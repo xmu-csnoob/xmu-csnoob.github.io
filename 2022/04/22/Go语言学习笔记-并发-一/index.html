@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xmu-csnoob.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Go语言学习笔记&#x2F;并发(一)Reader Writer Model 读者&#x2F;写者并发模型1.Introduction读者&#x2F;写者模型基本上可以称作是最简单的并发模型了，也就是在读者、写者两方中，写者源源不断地产生数据，读者源源不断地读取数据。其逻辑大致如下所示  2.Implementation在Java中，我们可以维护一个读者写者共享的临界区资源buffer来实现读者、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言学习笔记&#x2F;并发(一)">
+<meta property="og:url" content="https://xmu-csnoob.github.io/2022/04/22/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/index.html">
+<meta property="og:site_name" content="细雨招摇过远帆">
+<meta property="og:description" content="Go语言学习笔记&#x2F;并发(一)Reader Writer Model 读者&#x2F;写者并发模型1.Introduction读者&#x2F;写者模型基本上可以称作是最简单的并发模型了，也就是在读者、写者两方中，写者源源不断地产生数据，读者源源不断地读取数据。其逻辑大致如下所示  2.Implementation在Java中，我们可以维护一个读者写者共享的临界区资源buffer来实现读者、">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xmu-csnoob.github.io/pictures/%E8%AF%BB%E8%80%85%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="https://xmu-csnoob.github.io/pictures/%E5%86%99%E8%80%85%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="https://xmu-csnoob.github.io/pictures/%E5%B9%B6%E5%8F%911%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2022-04-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-22T13:51:07.614Z">
+<meta property="article:author" content="Wenfei Wang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xmu-csnoob.github.io/pictures/%E8%AF%BB%E8%80%85%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+
+<link rel="canonical" href="https://xmu-csnoob.github.io/2022/04/22/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Go语言学习笔记/并发(一) | 细雨招摇过远帆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">细雨招摇过远帆</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-关于作者">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于作者</a>
+
+  </li>
+        <li class="menu-item menu-item-专栏">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>专栏</a>
+
+  </li>
+        <li class="menu-item menu-item-时间轴">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/22/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Go语言学习笔记/并发(一)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-22 00:00:00 / Modified: 21:51:07" itemprop="dateCreated datePublished" datetime="2022-04-22T00:00:00+08:00">2022-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="far fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Go语言学习笔记-x2F-并发-一"><a href="#Go语言学习笔记-x2F-并发-一" class="headerlink" title="Go语言学习笔记&#x2F;并发(一)"></a>Go语言学习笔记&#x2F;并发(一)</h1><h2 id="Reader-Writer-Model-读者-x2F-写者并发模型"><a href="#Reader-Writer-Model-读者-x2F-写者并发模型" class="headerlink" title="Reader Writer Model 读者&#x2F;写者并发模型"></a>Reader Writer Model 读者&#x2F;写者并发模型</h2><h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h3><p>读者&#x2F;写者模型基本上可以称作是最简单的并发模型了，也就是在读者、写者两方中，<br>写者源源不断地产生数据，读者源源不断地读取数据。<br>其逻辑大致如下所示</p>
+<p><img src="/../pictures/%E8%AF%BB%E8%80%85%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="image"><br><img src="/../pictures/%E5%86%99%E8%80%85%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="image"></p>
+<h3 id="2-Implementation"><a href="#2-Implementation" class="headerlink" title="2.Implementation"></a>2.Implementation</h3><p>在Java中，我们可以维护一个读者写者共享的临界区资源buffer来实现读者、写者模型。<br>但在Go中，由于以下两个Go的特性，问题可以简化<br>①Go中的并发模型是Go原生的goroutine协程，协程相较于Java的线程，好处在于在大部分简单情境下无需像Java中一样处理资源竞争产生的一致性问题。其原因在于，go在单线程的情境下，多个协程是交替执行的，不存在多个协程同时进行的情况。<br>②Go中提供了chan <type>也就是channel类型，能够实现协程之间的通信。</p>
+<h3 id="3-Code"><a href="#3-Code" class="headerlink" title="3.Code"></a>3.Code</h3><p>首先定义两个结构以及他们的构造函数<br>之后实现两个结构的Read,Write方法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Reader <span class="keyword">struct</span> &#123;</span><br><span class="line">	id      <span class="type">int</span></span><br><span class="line">	channel <span class="keyword">chan</span> <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reader *Reader)</span></span> NewReader(id <span class="type">int</span>, channel <span class="keyword">chan</span> <span class="type">int</span>) &#123;</span><br><span class="line">	reader.id = id</span><br><span class="line">	reader.channel = channel</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reader *Reader)</span></span> Read(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		value := &lt;-reader.channel</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;reader &quot;</span>, reader.id, <span class="string">&quot; consumes&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Writer <span class="keyword">struct</span> &#123;</span><br><span class="line">	id      <span class="type">int</span></span><br><span class="line">	channel <span class="keyword">chan</span> <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(writer *Writer)</span></span> NewWriter(id <span class="type">int</span>, channel <span class="keyword">chan</span> <span class="type">int</span>) &#123;</span><br><span class="line">	writer.id = id</span><br><span class="line">	writer.channel = channel</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(writer Writer)</span></span> Write(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		value := rand.Int() % <span class="number">10</span></span><br><span class="line">		writer.channel &lt;- value</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;writer &quot;</span>, writer.id, <span class="string">&quot; produces&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后编写一个Test方法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test</span><span class="params">()</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	<span class="keyword">var</span> writer Writer</span><br><span class="line">	<span class="keyword">var</span> reader Reader</span><br><span class="line">	channel := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">3</span>)</span><br><span class="line">	reader.NewReader(<span class="number">1</span>, channel)</span><br><span class="line">	writer.NewWriter(<span class="number">1</span>, channel)</span><br><span class="line">	wg.Add(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> reader.Read(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> writer.Write(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> reader.Read(<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">go</span> reader.Read(<span class="number">3</span>)</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>试运行一下<br><img src="/../pictures/%E5%B9%B6%E5%8F%911%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt="image"></p>
+<p>最后在测试的过程中，感觉线程每秒开的太多了好烦，就又写了两个函数，能够利用go的timeTicker来实现定时执行循环体</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reader *Reader)</span></span> ReadAtIntervals(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	ticker := time.NewTicker(<span class="number">1</span> * time.Second)</span><br><span class="line">	<span class="keyword">for</span> _ = <span class="keyword">range</span> ticker.C &#123;</span><br><span class="line">		value := &lt;-reader.channel</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;reader &quot;</span>, reader.id, <span class="string">&quot; consumes&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(writer Writer)</span></span> WriteInIntervals(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	ticker := time.NewTicker(<span class="number">1</span> * time.Second)</span><br><span class="line">	<span class="keyword">for</span> _ = <span class="keyword">range</span> ticker.C &#123;</span><br><span class="line">		value := rand.Int() % <span class="number">10</span></span><br><span class="line">		writer.channel &lt;- value</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;writer &quot;</span>, writer.id, <span class="string">&quot; produces&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样代码在执行的过程中就会1s执行一次函数体啦，更容易观察运行的结果<br>另外，在多线程中比较常见的还有Producer-Consumer模型，它与本文中提到的Reader-Writer模型很类似，只是把channel中传递的值从int类型改成了一个struct结构体类型，同样只用到一个channel.因此不再详细去记录。<br>Reader-Writer模型和Producer-Consumer模型的代码在我的Github仓库中都有<br><a target="_blank" rel="noopener" href="https://github.com/xmu-csnoob/GoStudy">Github:GoStudy</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/23/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%BA%8C/" rel="next" title="Go语言学习笔记/并发(一)">
+      Go语言学习笔记/并发(一) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-x2F-%E5%B9%B6%E5%8F%91-%E4%B8%80"><span class="nav-number">1.</span> <span class="nav-text">Go语言学习笔记&#x2F;并发(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reader-Writer-Model-%E8%AF%BB%E8%80%85-x2F-%E5%86%99%E8%80%85%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Reader Writer Model 读者&#x2F;写者并发模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Implementation"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.Implementation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Code"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.Code</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wenfei Wang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xmu-csnoob" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xmu-csnoob" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/395110618@qq.com" title="E-Mail → 395110618@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenfei Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
