@@ -312,6 +312,150 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">Java-八股文-1-Java容器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:50:06" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-八股文-1-Java容器"><a href="#Java-八股文-1-Java容器" class="headerlink" title="Java-八股文-1-Java容器"></a>Java-八股文-1-Java容器</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Java-八股文-1-Java容器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:48:49" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java容器"><a href="#Java容器" class="headerlink" title="Java容器"></a>Java容器</h1><h2 id="1-ArrayList和LinkedList的区别？"><a href="#1-ArrayList和LinkedList的区别？" class="headerlink" title="1.ArrayList和LinkedList的区别？"></a>1.ArrayList和LinkedList的区别？</h2><p>ArrayList底层是通过动态数组实现，LinkedList通过链表实现。<br>ArrayList根据index访问更快，LinkedList需要遍历<br>ArrayList新增元素效率较低，涉及到新建数组与元素复制，LinkedList可以直接增加节点。<br>LinkedList不支持RandomAccess</p>
+<h2 id="2-ArrayList-实现-RandomAccess-接口有何作用？为何-LinkedList-却没实现这个接口？"><a href="#2-ArrayList-实现-RandomAccess-接口有何作用？为何-LinkedList-却没实现这个接口？" class="headerlink" title="2.ArrayList 实现 RandomAccess 接口有何作用？为何 LinkedList 却没实现这个接口？"></a>2.ArrayList 实现 RandomAccess 接口有何作用？为何 LinkedList 却没实现这个接口？</h2><p>实现RandomAccess接口能让继承List的类支持随机快速访问。<br>实现了这个接口的类在遍历时使用for，没有实现则使用迭代器模式<br>哪个快用哪个</p>
+<h2 id="3-ArrayList-的扩容机制？"><a href="#3-ArrayList-的扩容机制？" class="headerlink" title="3.ArrayList 的扩容机制？"></a>3.ArrayList 的扩容机制？</h2><p>元素数量达到容量时触发扩容，扩容为原来的1.5倍</p>
+<h2 id="4-Array-和-ArrayList-有何区别？什么时候更适合用-Array？"><a href="#4-Array-和-ArrayList-有何区别？什么时候更适合用-Array？" class="headerlink" title="4. Array 和 ArrayList 有何区别？什么时候更适合用 Array？"></a>4. Array 和 ArrayList 有何区别？什么时候更适合用 Array？</h2><p>Array可以定义为基本类型，ArrayList只能定义为对象类型。<br>Array只能存放同一类的对象，ArrayList可以存放同一类（或接口）及其子类</p>
+<h3 id="5-HashMap-的实现原理-x2F-底层数据结构？JDK1-7-和-JDK1-8"><a href="#5-HashMap-的实现原理-x2F-底层数据结构？JDK1-7-和-JDK1-8" class="headerlink" title="5.HashMap 的实现原理&#x2F;底层数据结构？JDK1.7 和 JDK1.8"></a>5.HashMap 的实现原理&#x2F;底层数据结构？JDK1.7 和 JDK1.8</h3><p>JDK 1.7：<br>HashMap&#x3D;数组+单链表<br>put操作：<br>key为null单独处理<br>不为null则计算哈希值——&gt;找到对应的index——&gt;遍历index对应的链表——&gt;插入数据<br>resize操作：<br>定义新的Entry，新容量——&gt;将原HashMap的各节点映射到新的Entry中去<br>get操作：<br>key为null单独处理<br>不为null则根据key直接取值  </p>
+<p>JDK 1.8:<br>HashMap&#x3D;数组+链表+红黑树<br>put操作：<br>计算哈希值找index——&gt;判断index节点类型——&gt;按照链表&#x2F;红黑树的方法插入——&gt;链表长度&#x3D;8转红黑树</p>
+<h3 id="6-HashMap-多线程死循环问题？"><a href="#6-HashMap-多线程死循环问题？" class="headerlink" title="6.HashMap 多线程死循环问题？"></a>6.HashMap 多线程死循环问题？</h3><p>HashMap是采用链表解决Hash冲突，因为是链表结构，那么就很容易形成闭合的链路，这样在循环的时候只要有线程对这个HashMap进行get操作就会产生死循环。<br>在单线程情况下，只有一个线程对HashMap的数据结构进行操作，是不可能产生闭合的回路的。<br>那就只有在多线程并发的情况下才会出现这种情况，那就是在put操作的时候，如果size&gt;initialCapacity*loadFactor，那么这时候HashMap就会进行rehash操作，随之HashMap的结构就会发生翻天覆地的变化。很有可能就是在两个线程在这个时候同时触发了rehash操作，产生了闭合的回路。</p>
+<h3 id="7-HashMap-与-ConcurrentHashMap-的区别是什么"><a href="#7-HashMap-与-ConcurrentHashMap-的区别是什么" class="headerlink" title="7.HashMap 与 ConcurrentHashMap 的区别是什么?"></a>7.HashMap 与 ConcurrentHashMap 的区别是什么?</h3><p>HashMap不支持并发，ConcurrentHashMap是线程安全的。<br>ConcurrentHashMap底层是由若干个Segment构成的，对于这些segment有上锁</p>
+<h3 id="8-HashSet-的实现原理？"><a href="#8-HashSet-的实现原理？" class="headerlink" title="8.HashSet 的实现原理？"></a>8.HashSet 的实现原理？</h3><p>HashSet实现Set接口，基于HashMap实现，hashMap的key不重复，作为hashMapKey的hashSet元素自然不重复</p>
+<h3 id="9-LinkedHashMap是如何实现的"><a href="#9-LinkedHashMap是如何实现的" class="headerlink" title="9.LinkedHashMap是如何实现的"></a>9.LinkedHashMap是如何实现的</h3><p>继承了HashMap，但采用双向链表来作为底层实现，每个节点多出来的指针就可以去记录插入的顺序。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/24/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -708,7 +852,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
