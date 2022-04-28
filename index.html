@@ -156,6 +156,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%20Exception/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%20Exception/" class="post-title-link" itemprop="url">Java-八股文-1-Java Exception</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:16:59" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-Exception"><a href="#Java-Exception" class="headerlink" title="Java Exception"></a>Java Exception</h1><h1 id="1-finally块中的代码什么时候被执行？"><a href="#1-finally块中的代码什么时候被执行？" class="headerlink" title="1.finally块中的代码什么时候被执行？"></a>1.finally块中的代码什么时候被执行？</h1><p>在try catch代码块执行完毕后一定会执行，如果try catch中出现return语句<br>则在return语句前执行</p>
+<h1 id="2-finally是不是一定会被执行到？"><a href="#2-finally是不是一定会被执行到？" class="headerlink" title="2.finally是不是一定会被执行到？"></a>2.finally是不是一定会被执行到？</h1><p>如果程序在try代码块之前就已经结束，finally代码块不会执行。</p>
+<h1 id="3-catch和finally能否省略？"><a href="#3-catch和finally能否省略？" class="headerlink" title="3.catch和finally能否省略？"></a>3.catch和finally能否省略？</h1><p>可以在同时任意省略一个，但不能两个都省略</p>
+<h1 id="4-Error和Exception的区别？"><a href="#4-Error和Exception的区别？" class="headerlink" title="4.Error和Exception的区别？"></a>4.Error和Exception的区别？</h1><p>两者都继承自Throwable类<br>Error是系统级别的错误，是程序员无法改变和处理的，是编译时出现的错误。<br>Exception是程序级别的错误，是可以被程序员捕捉到并处理到的。</p>
+<h1 id="5-运行时异常与受检异常有何异同？"><a href="#5-运行时异常与受检异常有何异同？" class="headerlink" title="5.运行时异常与受检异常有何异同？"></a>5.运行时异常与受检异常有何异同？</h1><p>运行时异常，表示程序代码在运行时发生的异常，程序代码设计的合理，这类异常不会发生<br>受检异常跟程序运行的上下文环境有关，即使程序设计无误，仍然可能因使用的问题而引发</p>
+<h1 id="6-throw-和-throws-的区别？"><a href="#6-throw-和-throws-的区别？" class="headerlink" title="6.throw 和 throws 的区别？"></a>6.throw 和 throws 的区别？</h1><p>throw关键字用于在方法内抛出异常<br>throws标注在方法定义中，用以标记这个方法会抛出特定的异常</p>
+<h1 id="7-主线程可以捕获到子线程的异常吗？为什么？"><a href="#7-主线程可以捕获到子线程的异常吗？为什么？" class="headerlink" title="7. 主线程可以捕获到子线程的异常吗？为什么？"></a>7. 主线程可以捕获到子线程的异常吗？为什么？</h1><p>不能。首先线程实现了runnable接口的run方法，run方法没有抛出任何的异常，这也就说明线程内的方法<br>只能在线程内部自己处理。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Java-八股文-1-Java语言基础问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:07:20" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>#Java语言基础问题</p>
+<h2 id="1-解释下什么是面向对象？面向对象和面向过程的区别？"><a href="#1-解释下什么是面向对象？面向对象和面向过程的区别？" class="headerlink" title="1.解释下什么是面向对象？面向对象和面向过程的区别？"></a>1.解释下什么是面向对象？面向对象和面向过程的区别？</h2><p>面向过程是把完成功能的过程分成若干个步骤， 将这些步骤分散到不同的函数<br>也可以说是方法中去，接下来只要依次调用这些步骤代表的方法即可。<br>面向对象则是将整个需求按照特点、功能等将整个系统划分为若干个类(最常见的也就是模拟现实世界进行设计)，，<br>将系统分解为不同的对象以及这些对象的行为。</p>
+<h2 id="2-解释一下面向对象的三大特性"><a href="#2-解释一下面向对象的三大特性" class="headerlink" title="2.解释一下面向对象的三大特性"></a>2.解释一下面向对象的三大特性</h2><p><em>封装:</em><br>封装指的是把客观的事物进行抽象包装成类，并且把自己的属性和方法包装起来，根据具体情况<br>来决定是否对外隐藏或开放<br><em>继承:</em><br>继承指的是，继承某类的子类可以使用父类的所有功能，并且还可以在此基础上对父类的功能进行拓展<br><em>多态:</em><br>多态指的是，某些方法对于不同的类具体的实现可能不同，但是他们可以通过相同的方法进行调用  </p>
+<h2 id="3-JDK-JRE-JVM"><a href="#3-JDK-JRE-JVM" class="headerlink" title="3.JDK JRE JVM"></a>3.JDK JRE JVM</h2><p>JDK是Java的核心，包括了JRE，一些java工具以及java类库<br>JRE是java的运行环境，包含JVM标准实现以及java类库<br>JVM是java虚拟机，是运行Java进程的虚拟计算机</p>
+<h3 id="4-Java创建对象的方法"><a href="#4-Java创建对象的方法" class="headerlink" title="4.Java创建对象的方法"></a>4.Java创建对象的方法</h3><p>1.new关键字<br>2.反射：Class.newInstance<br>3.反射：Constructor.newInstance<br>4.实现cloneable接口调用clone<br>5.反序列化  </p>
+<h3 id="5-接口与抽象类的区别"><a href="#5-接口与抽象类的区别" class="headerlink" title="5.接口与抽象类的区别"></a>5.接口与抽象类的区别</h3><p>1.接口只允许定义方法，抽象类允许实现方法<br>2.实现接口用implements关键字，并且一个类允许实现多个接口。<br>继承抽象类用extends关键字，一个类只允许继承一个类  </p>
+<h3 id="6-HashCode相同，equal-的结果就是true吗？"><a href="#6-HashCode相同，equal-的结果就是true吗？" class="headerlink" title="6.HashCode相同，equal()的结果就是true吗？"></a>6.HashCode相同，equal()的结果就是true吗？</h3><p>两个对象equals相等，则它们的hashcode必须相等，反之则不一定。<br>两个对象&#x3D;&#x3D;相等，则其hashcode一定相等，反之不一定成立。</p>
+<h3 id="7-Java方法参数是传值还是传引用？"><a href="#7-Java方法参数是传值还是传引用？" class="headerlink" title="7.Java方法参数是传值还是传引用？"></a>7.Java方法参数是传值还是传引用？</h3><p>传值，基本类型传值的拷贝。引用类型传引用的地址的拷贝。</p>
+<h3 id="8-如何实现对象的克隆？"><a href="#8-如何实现对象的克隆？" class="headerlink" title="8.如何实现对象的克隆？"></a>8.如何实现对象的克隆？</h3><p>浅拷贝:当对象被复制时，只复制对象本身和其中包含的值类型的成员变量，而引用类型的成员对象并没有复制。<br>深拷贝:将原型对象的所有引用对象也复制一份给克隆对象。<br>1.浅拷贝：实现cloneable接口，调用clone方法<br>2.深拷贝：序列化反序列化的方式</p>
+<h3 id="9-泛型是如何工作的？"><a href="#9-泛型是如何工作的？" class="headerlink" title="9.泛型是如何工作的？"></a>9.泛型是如何工作的？</h3><p>Java在编译的时候会进行类型擦除，也就是说Java在编译的时候，代码中的泛型类型已经是确定的，泛型是被擦除掉的。</p>
+<h3 id="10-限定通配符与非限定通配符"><a href="#10-限定通配符与非限定通配符" class="headerlink" title="10.限定通配符与非限定通配符"></a>10.限定通配符与非限定通配符</h3><p>非限定通配符：<br>&lt;T&gt; 任意类型<br>限定通配符：<br>&lt;? T extends F&gt;必须是F本身或是继承F的子类<br>&lt;? T super F&gt;必须是F本身或是F的父类  </p>
+<h3 id="11-String-StringBuffer-StringBuilder"><a href="#11-String-StringBuffer-StringBuilder" class="headerlink" title="11.String,StringBuffer,StringBuilder"></a>11.String,StringBuffer,StringBuilder</h3><p>String是final的，线程不安全<br>StringBuffer是可变的，线程安全<br>StringBuilder是可变的，线程不安全。<br>字符串拼接速度：String&lt;StringBuffer&lt;StringBuilder<br>首先String是final的，因此如果要拼接就需要重新new一个String对象，重新赋值<br>其次StringBuffer为了线程安全进行了一些加锁的操作，牺牲了一定的效率  </p>
+<h3 id="12-StringBuilder为什么线程不安全？StringBuffer为什么线程安全？"><a href="#12-StringBuilder为什么线程不安全？StringBuffer为什么线程安全？" class="headerlink" title="12.StringBuilder为什么线程不安全？StringBuffer为什么线程安全？"></a>12.StringBuilder为什么线程不安全？StringBuffer为什么线程安全？</h3><p>StringBuilder的append方法没有考虑线程同步的问题，但是在StringBuffer中<br>用synchronize关键字进行了线程同步。</p>
+<h3 id="13-字节流（InputStream-OutputStream-、字符流-Reader-Writer"><a href="#13-字节流（InputStream-OutputStream-、字符流-Reader-Writer" class="headerlink" title="13.字节流（InputStream,OutputStream)、字符流(Reader,Writer)"></a>13.字节流（InputStream,OutputStream)、字符流(Reader,Writer)</h3><p>字节流中最小的数据单元是字节，字符流是字符</p>
+<h3 id="14-BIO、NIO、AIO"><a href="#14-BIO、NIO、AIO" class="headerlink" title="14.BIO、NIO、AIO"></a>14.BIO、NIO、AIO</h3><p>BIO:<br>BIO指阻塞IO，在从IO未获取到数据的情况下就会一直等待，等待会使当前线程阻塞<br>Non-Blocking IO:<br>NIO指非阻塞式IO,无论什么情况直接获取数据，获取失败则一直重试。<br>IO复用：<br>IO复用是指单个线程同时处理多个IO操作，通过一些操作轮询当前可以处理的IO操作<br>select:线性轮询符合条件的操作<br>epoll:记住当前条件下对应的IO操作进行调用</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/24/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -552,12 +708,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
       </div>
   </nav>
