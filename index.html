@@ -156,80 +156,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%20Exception/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wenfei Wang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="细雨招摇过远帆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%20Exception/" class="post-title-link" itemprop="url">Java-八股文-1-Java Exception</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:16:59" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Java-Exception"><a href="#Java-Exception" class="headerlink" title="Java Exception"></a>Java Exception</h1><h1 id="1-finally块中的代码什么时候被执行？"><a href="#1-finally块中的代码什么时候被执行？" class="headerlink" title="1.finally块中的代码什么时候被执行？"></a>1.finally块中的代码什么时候被执行？</h1><p>在try catch代码块执行完毕后一定会执行，如果try catch中出现return语句<br>则在return语句前执行</p>
-<h1 id="2-finally是不是一定会被执行到？"><a href="#2-finally是不是一定会被执行到？" class="headerlink" title="2.finally是不是一定会被执行到？"></a>2.finally是不是一定会被执行到？</h1><p>如果程序在try代码块之前就已经结束，finally代码块不会执行。</p>
-<h1 id="3-catch和finally能否省略？"><a href="#3-catch和finally能否省略？" class="headerlink" title="3.catch和finally能否省略？"></a>3.catch和finally能否省略？</h1><p>可以在同时任意省略一个，但不能两个都省略</p>
-<h1 id="4-Error和Exception的区别？"><a href="#4-Error和Exception的区别？" class="headerlink" title="4.Error和Exception的区别？"></a>4.Error和Exception的区别？</h1><p>两者都继承自Throwable类<br>Error是系统级别的错误，是程序员无法改变和处理的，是编译时出现的错误。<br>Exception是程序级别的错误，是可以被程序员捕捉到并处理到的。</p>
-<h1 id="5-运行时异常与受检异常有何异同？"><a href="#5-运行时异常与受检异常有何异同？" class="headerlink" title="5.运行时异常与受检异常有何异同？"></a>5.运行时异常与受检异常有何异同？</h1><p>运行时异常，表示程序代码在运行时发生的异常，程序代码设计的合理，这类异常不会发生<br>受检异常跟程序运行的上下文环境有关，即使程序设计无误，仍然可能因使用的问题而引发</p>
-<h1 id="6-throw-和-throws-的区别？"><a href="#6-throw-和-throws-的区别？" class="headerlink" title="6.throw 和 throws 的区别？"></a>6.throw 和 throws 的区别？</h1><p>throw关键字用于在方法内抛出异常<br>throws标注在方法定义中，用以标记这个方法会抛出特定的异常</p>
-<h1 id="7-主线程可以捕获到子线程的异常吗？为什么？"><a href="#7-主线程可以捕获到子线程的异常吗？为什么？" class="headerlink" title="7. 主线程可以捕获到子线程的异常吗？为什么？"></a>7. 主线程可以捕获到子线程的异常吗？为什么？</h1><p>不能。首先线程实现了runnable接口的run方法，run方法没有抛出任何的异常，这也就说明线程内的方法<br>只能在线程内部自己处理。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -312,7 +238,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-2-Java%E5%AE%B9%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -326,74 +252,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">Java-八股文-1-Java容器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:50:06" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Java-八股文-1-Java容器"><a href="#Java-八股文-1-Java容器" class="headerlink" title="Java-八股文-1-Java容器"></a>Java-八股文-1-Java容器</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wenfei Wang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="细雨招摇过远帆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Java-八股文-1-Java容器</a>
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-2-Java%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Java-八股文-1-Java容器</a>
         </h2>
 
         <div class="post-meta">
@@ -437,6 +296,239 @@
 <h3 id="7-HashMap-与-ConcurrentHashMap-的区别是什么"><a href="#7-HashMap-与-ConcurrentHashMap-的区别是什么" class="headerlink" title="7.HashMap 与 ConcurrentHashMap 的区别是什么?"></a>7.HashMap 与 ConcurrentHashMap 的区别是什么?</h3><p>HashMap不支持并发，ConcurrentHashMap是线程安全的。<br>ConcurrentHashMap底层是由若干个Segment构成的，对于这些segment有上锁</p>
 <h3 id="8-HashSet-的实现原理？"><a href="#8-HashSet-的实现原理？" class="headerlink" title="8.HashSet 的实现原理？"></a>8.HashSet 的实现原理？</h3><p>HashSet实现Set接口，基于HashMap实现，hashMap的key不重复，作为hashMapKey的hashSet元素自然不重复</p>
 <h3 id="9-LinkedHashMap是如何实现的"><a href="#9-LinkedHashMap是如何实现的" class="headerlink" title="9.LinkedHashMap是如何实现的"></a>9.LinkedHashMap是如何实现的</h3><p>继承了HashMap，但采用双向链表来作为底层实现，每个节点多出来的指针就可以去记录插入的顺序。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/" class="post-title-link" itemprop="url">Java-八股文-1-Java Exception</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:16:59" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-Exception"><a href="#Java-Exception" class="headerlink" title="Java Exception"></a>Java Exception</h1><h1 id="1-finally块中的代码什么时候被执行？"><a href="#1-finally块中的代码什么时候被执行？" class="headerlink" title="1.finally块中的代码什么时候被执行？"></a>1.finally块中的代码什么时候被执行？</h1><p>在try catch代码块执行完毕后一定会执行，如果try catch中出现return语句<br>则在return语句前执行</p>
+<h1 id="2-finally是不是一定会被执行到？"><a href="#2-finally是不是一定会被执行到？" class="headerlink" title="2.finally是不是一定会被执行到？"></a>2.finally是不是一定会被执行到？</h1><p>如果程序在try代码块之前就已经结束，finally代码块不会执行。</p>
+<h1 id="3-catch和finally能否省略？"><a href="#3-catch和finally能否省略？" class="headerlink" title="3.catch和finally能否省略？"></a>3.catch和finally能否省略？</h1><p>可以在同时任意省略一个，但不能两个都省略</p>
+<h1 id="4-Error和Exception的区别？"><a href="#4-Error和Exception的区别？" class="headerlink" title="4.Error和Exception的区别？"></a>4.Error和Exception的区别？</h1><p>两者都继承自Throwable类<br>Error是系统级别的错误，是程序员无法改变和处理的，是编译时出现的错误。<br>Exception是程序级别的错误，是可以被程序员捕捉到并处理到的。</p>
+<h1 id="5-运行时异常与受检异常有何异同？"><a href="#5-运行时异常与受检异常有何异同？" class="headerlink" title="5.运行时异常与受检异常有何异同？"></a>5.运行时异常与受检异常有何异同？</h1><p>运行时异常，表示程序代码在运行时发生的异常，程序代码设计的合理，这类异常不会发生<br>受检异常跟程序运行的上下文环境有关，即使程序设计无误，仍然可能因使用的问题而引发</p>
+<h1 id="6-throw-和-throws-的区别？"><a href="#6-throw-和-throws-的区别？" class="headerlink" title="6.throw 和 throws 的区别？"></a>6.throw 和 throws 的区别？</h1><p>throw关键字用于在方法内抛出异常<br>throws标注在方法定义中，用以标记这个方法会抛出特定的异常</p>
+<h1 id="7-主线程可以捕获到子线程的异常吗？为什么？"><a href="#7-主线程可以捕获到子线程的异常吗？为什么？" class="headerlink" title="7. 主线程可以捕获到子线程的异常吗？为什么？"></a>7. 主线程可以捕获到子线程的异常吗？为什么？</h1><p>不能。首先线程实现了runnable接口的run方法，run方法没有抛出任何的异常，这也就说明线程内的方法<br>只能在线程内部自己处理。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">Java-八股文-1-Java多线程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 23:33:53" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-八股文-1-Java多线程"><a href="#Java-八股文-1-Java多线程" class="headerlink" title="Java-八股文-1-Java多线程"></a>Java-八股文-1-Java多线程</h1><h2 id="1-并发和并行的区别"><a href="#1-并发和并行的区别" class="headerlink" title="1. 并发和并行的区别?"></a>1. 并发和并行的区别?</h2><p>并发，在操作系统中，是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个处理机上运行<br>并行，在操作系统中，是指同一时间多个程序都在运行，真正的并行只能在多核处理器上实现</p>
+<h2 id="2-线程和进程的区别"><a href="#2-线程和进程的区别" class="headerlink" title="2.线程和进程的区别"></a>2.线程和进程的区别</h2><p>1.进程是操作系统分配资源的基本单位，线程是使用资源的基本单位，也是程序运行的基本单位<br>2.进程切换上下文更慢，耗费更多资源。线程切换上下文很快，耗费资源较少。<br>3.进程之间通信是需要一些额外手段的，线程之间则可以通过访问进程中线程共享的资源来传递信息。</p>
+<h2 id="3-什么是守护线程？"><a href="#3-什么是守护线程？" class="headerlink" title="3.什么是守护线程？"></a>3.什么是守护线程？</h2><p>守护线程是程序运行的时候在后台提供一种通用服务的线程。</p>
+<h2 id="4-Java开启线程的方式？"><a href="#4-Java开启线程的方式？" class="headerlink" title="4.Java开启线程的方式？"></a>4.Java开启线程的方式？</h2><p>1.继承Thread类<br>thread类本质上实现了runnable接口，其start方法内调用了runnable的run方法<br>2.实现Runnable接口<br>实现Runnable接口后将其作为参数初始化Thread，调用start方法<br>3.实现Callable接口</p>
+<h2 id="5-Runnable-和-Callable-有什么区别？"><a href="#5-Runnable-和-Callable-有什么区别？" class="headerlink" title="5.Runnable 和 Callable 有什么区别？"></a>5.Runnable 和 Callable 有什么区别？</h2><p>Runnable的run方法返回值是null，Callable的call方法有返回值，并且支持泛型<br>Runnable的run方法只可以抛出运行时异常，不能捕获异常，Callable的call方法支持抛出异常</p>
+<h2 id="6-Java线程状态以及转换"><a href="#6-Java线程状态以及转换" class="headerlink" title="6.Java线程状态以及转换"></a>6.Java线程状态以及转换</h2><p><img src="/../pictures/Go/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/1.png" alt="image"></p>
+<h2 id="7-Java中Sleep-和wait"><a href="#7-Java中Sleep-和wait" class="headerlink" title="7.Java中Sleep()和wait()"></a>7.Java中Sleep()和wait()</h2><p>1.sleep是Thread的方法，wait是Object的方法<br>2.sleep不会释放锁，wait会释放锁，进入线程等待池<br>3.wait只能在同步代码块中使用，sleep可以在线程中使用</p>
+<h2 id="8-Java怎么保证线程安全？"><a href="#8-Java怎么保证线程安全？" class="headerlink" title="8.Java怎么保证线程安全？"></a>8.Java怎么保证线程安全？</h2><p>1.使用线程安全的类<br>2.使用synchronized关键字<br>3.使用手动锁lock</p>
+<h2 id="9-Java实现线程同步？"><a href="#9-Java实现线程同步？" class="headerlink" title="9.Java实现线程同步？"></a>9.Java实现线程同步？</h2><p>1.synchronized关键字<br>2.使用重入锁ReentrantLock<br>3.使用ThreadLocal变量<br>4.使用阻塞队列 LinkedBlockingQueue<br>5.使用RAS原子变量</p>
+<h2 id="10-ThreadLocal变量"><a href="#10-ThreadLocal变量" class="headerlink" title="10.ThreadLocal变量"></a>10.ThreadLocal变量</h2><p>ThreadLocal 类用来提供线程内部的局部变量。这种变量在多线程环境下访问（通过get 和 set 方法访问）时能保证各个线程的变量相对独立于其他线程内的变量。ThreadLocal 实例通常来说都是 private static 类型的，用于关联线程和线程上下文。<br>可以通过 ThreadLocal 在同一线程</p>
+<h2 id="11-谈谈-synchronized-和-ReenTrantLock-的区别？"><a href="#11-谈谈-synchronized-和-ReenTrantLock-的区别？" class="headerlink" title="11.谈谈 synchronized 和 ReenTrantLock 的区别？"></a>11.谈谈 synchronized 和 ReenTrantLock 的区别？</h2><p>synchronized是java关键字，是java原生锁，无需手动上锁与释放锁，执行完后会自动释放。<br>ReenTrantLock则是一个实现类，需要调用lock与unlock对资源上锁与解锁。</p>
+<h2 id="12-volatile和synchronized"><a href="#12-volatile和synchronized" class="headerlink" title="12.volatile和synchronized"></a>12.volatile和synchronized</h2><p>1.volatile本质上是告诉进程该变量的值要从内存中读取，synchronized则是对变量上锁<br>2.volatile只能对基本类型使用，synchronized适用于类<br>3.volatile不能保证原子性，因此可能会造成脏读的情况。sync可以保证一致性<br>4.volatile不会导致线程阻塞，sync会</p>
+<h2 id="13-说下对-ReentrantReadWriteLock-的理解？"><a href="#13-说下对-ReentrantReadWriteLock-的理解？" class="headerlink" title="13. 说下对 ReentrantReadWriteLock 的理解？"></a>13. 说下对 ReentrantReadWriteLock 的理解？</h2><p>读写锁维护一个读锁和一个写锁，读锁是共享的，写锁是排他的。也就是说同一时间可能有多个<br>线程持有读锁，但只可能有一个线程持有写锁</p>
+<h2 id="14-说下对悲观锁和乐观锁的理解？"><a href="#14-说下对悲观锁和乐观锁的理解？" class="headerlink" title="14.说下对悲观锁和乐观锁的理解？"></a>14.说下对悲观锁和乐观锁的理解？</h2><p>悲观锁是指，在尝试对数据进行修改时，先对数据进行加锁，再去修改。<br>乐观锁是指，默认数据不会发生冲突，只有在提交的时候才去对数据冲突进行检测。  </p>
+<h2 id="15-乐观锁实现方式"><a href="#15-乐观锁实现方式" class="headerlink" title="15.乐观锁实现方式"></a>15.乐观锁实现方式</h2><p>1.用CAS修改数据，没有冲突则提交——&gt;会导致ABA问题<br>2.给数据附加一个版本号，每次修改数据时更新版本号，根据版本号判断是否有冲突</p>
+<h2 id="16-AQS-AbstractQueueSynchronizer"><a href="#16-AQS-AbstractQueueSynchronizer" class="headerlink" title="16.AQS AbstractQueueSynchronizer"></a>16.AQS AbstractQueueSynchronizer</h2><p>1.设计基于模板方法模式<br>简单来说是一个state+一个同步队列</p>
+<h2 id="17-什么是线程池？为什么引入线程池？"><a href="#17-什么是线程池？为什么引入线程池？" class="headerlink" title="17.什么是线程池？为什么引入线程池？"></a>17.什么是线程池？为什么引入线程池？</h2><p>线程池是指在初始化一个多线程应用程序过程中创建一个线程集合，然后在需要执行新的任务时重用这些线程而不是新建一个线程。<br>线程池能够降低系统资源消耗（重复申请销毁线程），也可以帮助程序管理线程。</p>
+<h2 id="18-线程池参数"><a href="#18-线程池参数" class="headerlink" title="18.线程池参数"></a>18.线程池参数</h2><p>corePoolSize:线程池核心线程数<br>maximumPoolSize:线程池最大线程数量<br>keepAliveTime:空闲线程存活时间<br>unit:空闲线程存活时间单位<br>workQueue:工作队列<br>threadFactory:线程工厂<br>handler:拒绝策略</p>
+<h2 id="19-创建线程池"><a href="#19-创建线程池" class="headerlink" title="19.创建线程池"></a>19.创建线程池</h2><p>1.Executors工厂方法<br>Executors.newFixedThreadPool：创建一个固定大小的线程池，可控制并发的线程数，超出的线程会在队列中等待；<br>Executors.newCachedThreadPool：创建一个可缓存的线程池，若线程数超过处理所需，缓存一段时间后会回收，若线程数不够，则新建线程；<br>Executors.newSingleThreadExecutor：创建单个线程数的线程池，它可以保证先进先出的执行顺序；<br>Executors.newScheduledThreadPool：创建一个可以执行延迟任务的线程池；<br>Executors.newSingleThreadScheduledExecutor：创建一个单线程的可以执行延迟任务的线程池；<br>Executors.newWorkStealingPool：创建一个抢占式执行的线程池（任务执行顺序不确定）<br>2.ThreadPoolExecutor</p>
+<h2 id="20-CopyOnWriteArray"><a href="#20-CopyOnWriteArray" class="headerlink" title="20.CopyOnWriteArray"></a>20.CopyOnWriteArray</h2><p>CopyOnWriteArrayList是在有写操作的时候会copy一份数据，然后写完再设置成新的数据。<br>通过ReentrantLock实现并发</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/" class="post-title-link" itemprop="url">Java-八股文-1-Java JVM</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 23:46:41" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-八股文-1-Java-JVM"><a href="#Java-八股文-1-Java-JVM" class="headerlink" title="Java-八股文-1-Java JVM"></a>Java-八股文-1-Java JVM</h1><h2 id="1-说一下-JVM-的主要组成部分？及其作用？"><a href="#1-说一下-JVM-的主要组成部分？及其作用？" class="headerlink" title="1.说一下 JVM 的主要组成部分？及其作用？"></a>1.说一下 JVM 的主要组成部分？及其作用？</h2><p>①类加载器：加载类文件到内存<br>②栈区：栈也叫栈内存，是java程序的运行区，是在线程创建时创建，它的生命周期跟随线程的生命周期，线程结束栈内存释放；<br>③堆内存：类的加载器读取了类文件之后，需要把类、方法、常变量放到堆内存中<br>④方法区：所有的类级数据将存储在这里，包括静态变量。每个JVM只有一个方法区，它是一个共享资源;</p>
+<h2 id="2-谈谈对运行时数据区的理解？"><a href="#2-谈谈对运行时数据区的理解？" class="headerlink" title="2.谈谈对运行时数据区的理解？"></a>2.谈谈对运行时数据区的理解？</h2><p>主要是五部分：程序计数器、方法区、虚拟机栈、本地方法栈、堆<br><img src="/../pictures/Go/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%20JVM/1.png" alt="image"></p>
+<h2 id="3-堆和栈的区别是什么？"><a href="#3-堆和栈的区别是什么？" class="headerlink" title="3. 堆和栈的区别是什么？"></a>3. 堆和栈的区别是什么？</h2><p>栈中存储的是局部变量<br>存储的是数组和对象（其实数组就是对象），凡是new建立的都是在堆中，堆中存放的都是实体（对象），实体用于封装数据，而且是封装多个（实体的多个属性），如果一个数据消失，这个实体也没有消失，还可以用，所以堆是不会随时释放的，但是栈不一样，栈里存放的都是单个变量，变量被释放了，那就没有了。</p>
+<h2 id="4-判断垃圾可以回收的方法"><a href="#4-判断垃圾可以回收的方法" class="headerlink" title="4.判断垃圾可以回收的方法"></a>4.判断垃圾可以回收的方法</h2><p>①引用计数法<br>的基本思想是堆中每个对象都有一个引用计数器，每当有一个地方引用它，计数器的值就加1；当引用失效时，计数器的值就减1。计数器值为0的对象可以被当做垃圾回收。<br>②可达性分析法<br>Java语言是通过可达性分析算法来判断对象是否存活的。这个算法的基本思想是以 GC Root 对象为起点，开始往下搜索，所走过的路径称为引用链，当 GC Root 和一个对象之间没有任何引用链相连时，则证明此对象是不可用的。</p>
+<h2 id="5-垃圾回收算法"><a href="#5-垃圾回收算法" class="headerlink" title="5.垃圾回收算法"></a>5.垃圾回收算法</h2><p>①标记-清除算法<br>②标记-复制算法<br>③标记-整理算法</p>
 
       
     </div>
@@ -852,7 +944,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
