@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xmu-csnoob.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Java-八股文-6-MySQL1.数据库的三范式是什么？1NF:属性不可分2NF:所有属性完全依赖于主键3NF:属性不间接依赖于主键 2.MySQL索引是什么？索引是对数据库表中一列或多列的值进行排序的一种结构。MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。 3.索引底层数据结构？B树，B+树，HashB树1.关键字分散在整棵树2.根据任何一个关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-八股文-6-MySQL">
+<meta property="og:url" content="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL/index.html">
+<meta property="og:site_name" content="细雨招摇过远帆">
+<meta property="og:description" content="Java-八股文-6-MySQL1.数据库的三范式是什么？1NF:属性不可分2NF:所有属性完全依赖于主键3NF:属性不间接依赖于主键 2.MySQL索引是什么？索引是对数据库表中一列或多列的值进行排序的一种结构。MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。 3.索引底层数据结构？B树，B+树，HashB树1.关键字分散在整棵树2.根据任何一个关键">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xmu-csnoob.github.io/pictures/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-MySQL/1.png">
+<meta property="article:published_time" content="2022-04-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-29T03:11:04.444Z">
+<meta property="article:author" content="Wenfei Wang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xmu-csnoob.github.io/pictures/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-MySQL/1.png">
+
+<link rel="canonical" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Java-八股文-6-MySQL | 细雨招摇过远帆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">细雨招摇过远帆</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-关于作者">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于作者</a>
+
+  </li>
+        <li class="menu-item menu-item-专栏">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>专栏</a>
+
+  </li>
+        <li class="menu-item menu-item-时间轴">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java-八股文-6-MySQL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-29 00:00:00 / Modified: 11:11:04" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">2022-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="far fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java-八股文-6-MySQL"><a href="#Java-八股文-6-MySQL" class="headerlink" title="Java-八股文-6-MySQL"></a>Java-八股文-6-MySQL</h1><h2 id="1-数据库的三范式是什么？"><a href="#1-数据库的三范式是什么？" class="headerlink" title="1.数据库的三范式是什么？"></a>1.数据库的三范式是什么？</h2><p>1NF:属性不可分<br>2NF:所有属性完全依赖于主键<br>3NF:属性不间接依赖于主键</p>
+<h2 id="2-MySQL索引是什么？"><a href="#2-MySQL索引是什么？" class="headerlink" title="2.MySQL索引是什么？"></a>2.MySQL索引是什么？</h2><p>索引是对数据库表中一列或多列的值进行排序的一种结构。<br>MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。</p>
+<h2 id="3-索引底层数据结构？"><a href="#3-索引底层数据结构？" class="headerlink" title="3.索引底层数据结构？"></a>3.索引底层数据结构？</h2><p>B树，B+树，Hash<br>B树<br>1.关键字分散在整棵树<br>2.根据任何一个关键字可以唯一的找到一个节点<br>3.搜索可能在非叶子节点结束<br>4.树高每多一层，就多一次磁盘I&#x2F;O消耗  </p>
+<p>B+树<br>1.关键字只出现在叶子节点中，并且这些节点用链表相连接  </p>
+<p>Hash<br>哈希索引就是采用一定的哈希算法，把键值转为哈希值，检索时只需要进行一次哈希算法。<br>但哈希索引不支持范围查询  </p>
+<h2 id="4-索引分类"><a href="#4-索引分类" class="headerlink" title="4.索引分类"></a>4.索引分类</h2><h3 id="逻辑分类"><a href="#逻辑分类" class="headerlink" title="逻辑分类"></a>逻辑分类</h3><p>按功能划分<br>1.主键索引：将表的主键自动设置为索引<br>2.唯一索引：要求索引列唯一且不为null<br>3.普通索引<br>按列数划分<br>1.单例索引：一个索引只包含一个列，一个表可以有多个单例索引。<br>2.组合索引：一个组合索引包含两个或两个以上的列。查询的时候遵循 mysql 组合索引的 “最左前缀”原则，即使用 where 时条件要按照建立索引的时候字段的排列方式放置索引才会生效。</p>
+<h3 id="物理分类"><a href="#物理分类" class="headerlink" title="物理分类"></a>物理分类</h3><p>1.聚簇索引(InnoDB)<br>聚簇索引（clustered index）不是单独的一种索引类型，而是一种数据存储方式。<br>这种存储方式是依靠B+树来实现的，根据表的主键构造一棵B+树且B+树叶子节点存放的都是表的行记录数据时，<br>方可称该主键索引为聚簇索引。聚簇索引也可理解为将数据存储与索引放到了一块，找到索引也就找到了数据。</p>
+<p>2.非聚簇索引(MyISAM)<br>非聚簇索引：数据和索引是分开的，B+树叶子节点存放的不是数据表的行记录。</p>
+<h2 id="5-聚簇索引的优缺点"><a href="#5-聚簇索引的优缺点" class="headerlink" title="5.聚簇索引的优缺点"></a>5.聚簇索引的优缺点</h2><p>优点：<br>1.数据访问更快，因为聚簇索引将索引和数据保存在同一个B+树中，因此从聚簇索引中获取数据比非聚簇索引更快<br>2.聚簇索引对于主键的排序查找和范围查找速度非常快<br>缺点：<br>1.插入速度严重依赖于插入顺序，按照主键的顺序插入是最快的方式，否则将会出现页分裂，严重影响性能。因此，对于InnoDB表，我们一般都会定义一个自增的ID列为主键（主键列不要选没有意义的自增列，选经常查询的条件列才好，不然无法体现其主键索引性能）<br>2.更新主键的代价很高，因为将会导致被更新的行移动。因此，对于InnoDB表，我们一般定义主键为不可更新。</p>
+<h2 id="6-覆盖索引"><a href="#6-覆盖索引" class="headerlink" title="6.覆盖索引"></a>6.覆盖索引</h2><p>覆盖索引包含了一个sql语句中所有条件出现的属性。</p>
+<h2 id="7-索引失效"><a href="#7-索引失效" class="headerlink" title="7.索引失效"></a>7.索引失效</h2><p>1.where语句带有or，部分条件无索引<br>2.like查询以%开头<br>3.where进行字符串查询，不带引号<br>4.索引列参与计算<br>5.条件中只有组合索引中的部分属性</p>
+<h2 id="8-主从复制原理"><a href="#8-主从复制原理" class="headerlink" title="8.主从复制原理"></a>8.主从复制原理</h2><p><img src="/../../pictures/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-MySQL/1.png" alt="image"><br>主要包含三个线程：<br>1.master（binlog dump thread) 主要负责Master库中有数据更新的时候，会按照binlog格式，将更新的事件类型写入到主库的binlog文件<br>2.slave (I&#x2F;O thread) 该线程用于请求Master，Master会返回binlog的名称以及当前数据更新的位置、binlog文件位置的副本<br>3.slave (sql thread) 当Slave检测到中继日志有更新，就会将更新的内容同步到Slave数据库中，这样就保证了主从的数据的同步</p>
+<h2 id="9-主从同步策略"><a href="#9-主从同步策略" class="headerlink" title="9.主从同步策略"></a>9.主从同步策略</h2><p>「同步策略」：Master会等待所有的Slave都回应后才会提交，这个主从的同步的性能会严重的影响。<br>「半同步策略」：Master至少会等待一个Slave回应后提交。<br>「异步策略」：Master不用等待Slave回应就可以提交。<br>「延迟策略」：Slave要落后于Master指定的时间。  </p>
+<h2 id="10-MVCC"><a href="#10-MVCC" class="headerlink" title="10.MVCC"></a>10.MVCC</h2><p>MVCC是MySQL乐观锁实现的一种方式，是行级锁。<br>通过两个对用户不可见的版本号属性来进行操作。</p>
+<h2 id="11"><a href="#11" class="headerlink" title="11."></a>11.</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-9-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="prev" title="Java-八股文-9-消息队列">
+      <i class="fa fa-chevron-left"></i> Java-八股文-9-消息队列
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-8-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="next" title="Java-八股文-8-操作系统">
+      Java-八股文-8-操作系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL"><span class="nav-number">1.</span> <span class="nav-text">Java-八股文-6-MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%89%E8%8C%83%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.数据库的三范式是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MySQL%E7%B4%A2%E5%BC%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">2.MySQL索引是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">3.索引底层数据结构？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">4.索引分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.1.</span> <span class="nav-text">逻辑分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.2.</span> <span class="nav-text">物理分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">5.聚簇索引的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95"><span class="nav-number">1.6.</span> <span class="nav-text">6.覆盖索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88"><span class="nav-number">1.7.</span> <span class="nav-text">7.索引失效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86"><span class="nav-number">1.8.</span> <span class="nav-text">8.主从复制原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E7%AD%96%E7%95%A5"><span class="nav-number">1.9.</span> <span class="nav-text">9.主从同步策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-MVCC"><span class="nav-number">1.10.</span> <span class="nav-text">10.MVCC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11"><span class="nav-number">1.11.</span> <span class="nav-text">11.</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wenfei Wang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xmu-csnoob" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xmu-csnoob" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/395110618@qq.com" title="E-Mail → 395110618@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenfei Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

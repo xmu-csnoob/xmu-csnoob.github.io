@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,303 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Java-八股文-1-Java语言基础问题</a>
+            <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">Java-八股文-7-计算机网络</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-29 00:00:00 / Modified: 11:33:59" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">2022-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>#Java-八股文-7-计算机网络</p>
+<h2 id="1-为什么一定要三次握手？"><a href="#1-为什么一定要三次握手？" class="headerlink" title="1.为什么一定要三次握手？"></a>1.为什么一定要三次握手？</h2><p>建立TCP连接的前提是，双方都要确保各自的收发能力都是正常的。<br>客户端向服务器发请求时，服务器可以确定客户端发消息能力正常，<br>服务器回执时，客户端能够确定服务器收发能力都正常，<br>但是服务器并不确定客户端收消息能力是否正常，因此需要客户端再向服务器发消息，<br>以确保客户端收消息正常。</p>
+<h2 id="2-为什么一定要四次挥手"><a href="#2-为什么一定要四次挥手" class="headerlink" title="2.为什么一定要四次挥手"></a>2.为什么一定要四次挥手</h2><p>四次挥手是因为，在服务器响应可以关闭连接时，服务器有些数据可能还未发送完毕<br>因此当且仅当服务器数据发送完毕后，才会告诉服务器关闭连接。</p>
+<h2 id="3-TCP与UDP有哪些区别？各自应用场景？"><a href="#3-TCP与UDP有哪些区别？各自应用场景？" class="headerlink" title="3.TCP与UDP有哪些区别？各自应用场景？"></a>3.TCP与UDP有哪些区别？各自应用场景？</h2><p><img src="/../../pictures/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/1.png" alt="image"></p>
+<h3 id="4-HTTP1-0，1-1，2-0-的版本区别"><a href="#4-HTTP1-0，1-1，2-0-的版本区别" class="headerlink" title="4.HTTP1.0，1.1，2.0 的版本区别"></a>4.HTTP1.0，1.1，2.0 的版本区别</h3><p>HTTP 1.0:默认短连接，但支持长连接<br>HTTP 1.1：默认长连接<br>HTTP 2.0：复用TCP连接</p>
+<h3 id="5-HTTP如何实现长连接？"><a href="#5-HTTP如何实现长连接？" class="headerlink" title="5.HTTP如何实现长连接？"></a>5.HTTP如何实现长连接？</h3><p>利用TCP的保活机制，保活机制的工作原理就是，通过在服务器端设置一个保活定时器，当定时器开始工作后就定时的向网络通信的另一端发出保活探测的TCP报文，如果接收到了ACK报文，那么就证明对方存活，可以继续保有连接；否则就证明网络存在故障。</p>
+<h3 id="6-输入URL到显示页面的全过程"><a href="#6-输入URL到显示页面的全过程" class="headerlink" title="6.输入URL到显示页面的全过程"></a>6.输入URL到显示页面的全过程</h3><p>1.DNS域名解析<br>2.建立TCP连接，发送HTTP请求<br>3.服务器处理请求，返回HTTP报文<br>4.浏览器根据报文渲染页面<br><img src="/../../pictures/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2.png" alt="image"></p>
+<h3 id="7-Cookie和Session的区别"><a href="#7-Cookie和Session的区别" class="headerlink" title="7.Cookie和Session的区别"></a>7.Cookie和Session的区别</h3><p>cookie和session都是用来跟踪浏览器用户身份的会话方式<br>(1)cookie数据存放在客户的浏览器上，session数据放在服务器上<br>(2)cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,如果主要考虑到安全应当使用session<br>(3)session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，如果主要考虑到减轻服务器性能方面，应当使用COOKIE<br>(4)单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能3K<br>(5)所以：将登陆信息等重要信息存放为SESSION;其他信息如果需要保留，可以放在COOKIE中  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-8-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-8-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">Java-八股文-8-操作系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-29 00:00:00 / Modified: 11:42:46" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">2022-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>#Java-八股文-8-操作系统</p>
+<h2 id="1-进程间的通信方式有哪些？"><a href="#1-进程间的通信方式有哪些？" class="headerlink" title="1.进程间的通信方式有哪些？"></a>1.进程间的通信方式有哪些？</h2><p>1.通过管道<br>2.通过消息队列<br>3.信号量<br>4.共享内存<br>5.socket</p>
+<h2 id="2-进程的调度算法有哪些？"><a href="#2-进程的调度算法有哪些？" class="headerlink" title="2.进程的调度算法有哪些？"></a>2.进程的调度算法有哪些？</h2><p>1.先来先服务<br>2.最短作业优先<br>3.最高相应比优先<br>4.时间片轮转  </p>
+<h2 id="3-什么是死锁？"><a href="#3-什么是死锁？" class="headerlink" title="3.什么是死锁？"></a>3.什么是死锁？</h2><p>死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。</p>
+<h2 id="4-产生死锁的必要条件"><a href="#4-产生死锁的必要条件" class="headerlink" title="4.产生死锁的必要条件"></a>4.产生死锁的必要条件</h2><p>1.互斥<br>2.请求与保持<br>3.不可剥夺<br>4.循环等待</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL/" class="post-title-link" itemprop="url">Java-八股文-6-MySQL</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-29 00:00:00 / Modified: 11:11:04" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">2022-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-八股文-6-MySQL"><a href="#Java-八股文-6-MySQL" class="headerlink" title="Java-八股文-6-MySQL"></a>Java-八股文-6-MySQL</h1><h2 id="1-数据库的三范式是什么？"><a href="#1-数据库的三范式是什么？" class="headerlink" title="1.数据库的三范式是什么？"></a>1.数据库的三范式是什么？</h2><p>1NF:属性不可分<br>2NF:所有属性完全依赖于主键<br>3NF:属性不间接依赖于主键</p>
+<h2 id="2-MySQL索引是什么？"><a href="#2-MySQL索引是什么？" class="headerlink" title="2.MySQL索引是什么？"></a>2.MySQL索引是什么？</h2><p>索引是对数据库表中一列或多列的值进行排序的一种结构。<br>MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。</p>
+<h2 id="3-索引底层数据结构？"><a href="#3-索引底层数据结构？" class="headerlink" title="3.索引底层数据结构？"></a>3.索引底层数据结构？</h2><p>B树，B+树，Hash<br>B树<br>1.关键字分散在整棵树<br>2.根据任何一个关键字可以唯一的找到一个节点<br>3.搜索可能在非叶子节点结束<br>4.树高每多一层，就多一次磁盘I&#x2F;O消耗  </p>
+<p>B+树<br>1.关键字只出现在叶子节点中，并且这些节点用链表相连接  </p>
+<p>Hash<br>哈希索引就是采用一定的哈希算法，把键值转为哈希值，检索时只需要进行一次哈希算法。<br>但哈希索引不支持范围查询  </p>
+<h2 id="4-索引分类"><a href="#4-索引分类" class="headerlink" title="4.索引分类"></a>4.索引分类</h2><h3 id="逻辑分类"><a href="#逻辑分类" class="headerlink" title="逻辑分类"></a>逻辑分类</h3><p>按功能划分<br>1.主键索引：将表的主键自动设置为索引<br>2.唯一索引：要求索引列唯一且不为null<br>3.普通索引<br>按列数划分<br>1.单例索引：一个索引只包含一个列，一个表可以有多个单例索引。<br>2.组合索引：一个组合索引包含两个或两个以上的列。查询的时候遵循 mysql 组合索引的 “最左前缀”原则，即使用 where 时条件要按照建立索引的时候字段的排列方式放置索引才会生效。</p>
+<h3 id="物理分类"><a href="#物理分类" class="headerlink" title="物理分类"></a>物理分类</h3><p>1.聚簇索引(InnoDB)<br>聚簇索引（clustered index）不是单独的一种索引类型，而是一种数据存储方式。<br>这种存储方式是依靠B+树来实现的，根据表的主键构造一棵B+树且B+树叶子节点存放的都是表的行记录数据时，<br>方可称该主键索引为聚簇索引。聚簇索引也可理解为将数据存储与索引放到了一块，找到索引也就找到了数据。</p>
+<p>2.非聚簇索引(MyISAM)<br>非聚簇索引：数据和索引是分开的，B+树叶子节点存放的不是数据表的行记录。</p>
+<h2 id="5-聚簇索引的优缺点"><a href="#5-聚簇索引的优缺点" class="headerlink" title="5.聚簇索引的优缺点"></a>5.聚簇索引的优缺点</h2><p>优点：<br>1.数据访问更快，因为聚簇索引将索引和数据保存在同一个B+树中，因此从聚簇索引中获取数据比非聚簇索引更快<br>2.聚簇索引对于主键的排序查找和范围查找速度非常快<br>缺点：<br>1.插入速度严重依赖于插入顺序，按照主键的顺序插入是最快的方式，否则将会出现页分裂，严重影响性能。因此，对于InnoDB表，我们一般都会定义一个自增的ID列为主键（主键列不要选没有意义的自增列，选经常查询的条件列才好，不然无法体现其主键索引性能）<br>2.更新主键的代价很高，因为将会导致被更新的行移动。因此，对于InnoDB表，我们一般定义主键为不可更新。</p>
+<h2 id="6-覆盖索引"><a href="#6-覆盖索引" class="headerlink" title="6.覆盖索引"></a>6.覆盖索引</h2><p>覆盖索引包含了一个sql语句中所有条件出现的属性。</p>
+<h2 id="7-索引失效"><a href="#7-索引失效" class="headerlink" title="7.索引失效"></a>7.索引失效</h2><p>1.where语句带有or，部分条件无索引<br>2.like查询以%开头<br>3.where进行字符串查询，不带引号<br>4.索引列参与计算<br>5.条件中只有组合索引中的部分属性</p>
+<h2 id="8-主从复制原理"><a href="#8-主从复制原理" class="headerlink" title="8.主从复制原理"></a>8.主从复制原理</h2><p><img src="/../../pictures/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-MySQL/1.png" alt="image"><br>主要包含三个线程：<br>1.master（binlog dump thread) 主要负责Master库中有数据更新的时候，会按照binlog格式，将更新的事件类型写入到主库的binlog文件<br>2.slave (I&#x2F;O thread) 该线程用于请求Master，Master会返回binlog的名称以及当前数据更新的位置、binlog文件位置的副本<br>3.slave (sql thread) 当Slave检测到中继日志有更新，就会将更新的内容同步到Slave数据库中，这样就保证了主从的数据的同步</p>
+<h2 id="9-主从同步策略"><a href="#9-主从同步策略" class="headerlink" title="9.主从同步策略"></a>9.主从同步策略</h2><p>「同步策略」：Master会等待所有的Slave都回应后才会提交，这个主从的同步的性能会严重的影响。<br>「半同步策略」：Master至少会等待一个Slave回应后提交。<br>「异步策略」：Master不用等待Slave回应就可以提交。<br>「延迟策略」：Slave要落后于Master指定的时间。  </p>
+<h2 id="10-MVCC"><a href="#10-MVCC" class="headerlink" title="10.MVCC"></a>10.MVCC</h2><p>MVCC是MySQL乐观锁实现的一种方式，是行级锁。<br>通过两个对用户不可见的版本号属性来进行操作。</p>
+<h2 id="11"><a href="#11" class="headerlink" title="11."></a>11.</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-9-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-9-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">Java-八股文-9-消息队列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-29 00:00:00 / Modified: 11:45:52" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">2022-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-八股文-9-消息队列"><a href="#Java-八股文-9-消息队列" class="headerlink" title="Java-八股文-9-消息队列"></a>Java-八股文-9-消息队列</h1><h2 id="1-消息队列的基本作用？"><a href="#1-消息队列的基本作用？" class="headerlink" title="1.消息队列的基本作用？"></a>1.消息队列的基本作用？</h2><p>①解耦<br>服务端只负责消息的产生，至于消息发给谁交给消息决定<br>②异步<br>可以将一个同步的步骤，通过发送消息的形式转变为异步<br>③削峰<br>大量请求涌入时，会把请求压入消息队列，让服务端按照自己的速度拉取处理</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Java-八股文-1-Java语言基础问题</a>
         </h2>
 
         <div class="post-meta">
@@ -238,7 +534,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-2-Java%E5%AE%B9%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -252,7 +548,81 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-2-Java%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Java-八股文-2-Java容器</a>
+            <a href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/" class="post-title-link" itemprop="url">Java-八股文-4-Java Exception</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 23:49:43" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-Exception"><a href="#Java-Exception" class="headerlink" title="Java Exception"></a>Java Exception</h1><h1 id="1-finally块中的代码什么时候被执行？"><a href="#1-finally块中的代码什么时候被执行？" class="headerlink" title="1.finally块中的代码什么时候被执行？"></a>1.finally块中的代码什么时候被执行？</h1><p>在try catch代码块执行完毕后一定会执行，如果try catch中出现return语句<br>则在return语句前执行</p>
+<h1 id="2-finally是不是一定会被执行到？"><a href="#2-finally是不是一定会被执行到？" class="headerlink" title="2.finally是不是一定会被执行到？"></a>2.finally是不是一定会被执行到？</h1><p>如果程序在try代码块之前就已经结束，finally代码块不会执行。</p>
+<h1 id="3-catch和finally能否省略？"><a href="#3-catch和finally能否省略？" class="headerlink" title="3.catch和finally能否省略？"></a>3.catch和finally能否省略？</h1><p>可以在同时任意省略一个，但不能两个都省略</p>
+<h1 id="4-Error和Exception的区别？"><a href="#4-Error和Exception的区别？" class="headerlink" title="4.Error和Exception的区别？"></a>4.Error和Exception的区别？</h1><p>两者都继承自Throwable类<br>Error是系统级别的错误，是程序员无法改变和处理的，是编译时出现的错误。<br>Exception是程序级别的错误，是可以被程序员捕捉到并处理到的。</p>
+<h1 id="5-运行时异常与受检异常有何异同？"><a href="#5-运行时异常与受检异常有何异同？" class="headerlink" title="5.运行时异常与受检异常有何异同？"></a>5.运行时异常与受检异常有何异同？</h1><p>运行时异常，表示程序代码在运行时发生的异常，程序代码设计的合理，这类异常不会发生<br>受检异常跟程序运行的上下文环境有关，即使程序设计无误，仍然可能因使用的问题而引发</p>
+<h1 id="6-throw-和-throws-的区别？"><a href="#6-throw-和-throws-的区别？" class="headerlink" title="6.throw 和 throws 的区别？"></a>6.throw 和 throws 的区别？</h1><p>throw关键字用于在方法内抛出异常<br>throws标注在方法定义中，用以标记这个方法会抛出特定的异常</p>
+<h1 id="7-主线程可以捕获到子线程的异常吗？为什么？"><a href="#7-主线程可以捕获到子线程的异常吗？为什么？" class="headerlink" title="7. 主线程可以捕获到子线程的异常吗？为什么？"></a>7. 主线程可以捕获到子线程的异常吗？为什么？</h1><p>不能。首先线程实现了runnable接口的run方法，run方法没有抛出任何的异常，这也就说明线程内的方法<br>只能在线程内部自己处理。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-2-Java%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-2-Java%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Java-八股文-2-Java容器</a>
         </h2>
 
         <div class="post-meta">
@@ -315,7 +685,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -329,7 +699,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/" class="post-title-link" itemprop="url">Java-八股文-4-Java Exception</a>
+            <a href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">Java-八股文-3-Java多线程</a>
         </h2>
 
         <div class="post-meta">
@@ -338,84 +708,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-28 00:00:00 / Modified: 23:49:43" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+              <time title="Created: 2022-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
             </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
                 </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Java-Exception"><a href="#Java-Exception" class="headerlink" title="Java Exception"></a>Java Exception</h1><h1 id="1-finally块中的代码什么时候被执行？"><a href="#1-finally块中的代码什么时候被执行？" class="headerlink" title="1.finally块中的代码什么时候被执行？"></a>1.finally块中的代码什么时候被执行？</h1><p>在try catch代码块执行完毕后一定会执行，如果try catch中出现return语句<br>则在return语句前执行</p>
-<h1 id="2-finally是不是一定会被执行到？"><a href="#2-finally是不是一定会被执行到？" class="headerlink" title="2.finally是不是一定会被执行到？"></a>2.finally是不是一定会被执行到？</h1><p>如果程序在try代码块之前就已经结束，finally代码块不会执行。</p>
-<h1 id="3-catch和finally能否省略？"><a href="#3-catch和finally能否省略？" class="headerlink" title="3.catch和finally能否省略？"></a>3.catch和finally能否省略？</h1><p>可以在同时任意省略一个，但不能两个都省略</p>
-<h1 id="4-Error和Exception的区别？"><a href="#4-Error和Exception的区别？" class="headerlink" title="4.Error和Exception的区别？"></a>4.Error和Exception的区别？</h1><p>两者都继承自Throwable类<br>Error是系统级别的错误，是程序员无法改变和处理的，是编译时出现的错误。<br>Exception是程序级别的错误，是可以被程序员捕捉到并处理到的。</p>
-<h1 id="5-运行时异常与受检异常有何异同？"><a href="#5-运行时异常与受检异常有何异同？" class="headerlink" title="5.运行时异常与受检异常有何异同？"></a>5.运行时异常与受检异常有何异同？</h1><p>运行时异常，表示程序代码在运行时发生的异常，程序代码设计的合理，这类异常不会发生<br>受检异常跟程序运行的上下文环境有关，即使程序设计无误，仍然可能因使用的问题而引发</p>
-<h1 id="6-throw-和-throws-的区别？"><a href="#6-throw-和-throws-的区别？" class="headerlink" title="6.throw 和 throws 的区别？"></a>6.throw 和 throws 的区别？</h1><p>throw关键字用于在方法内抛出异常<br>throws标注在方法定义中，用以标记这个方法会抛出特定的异常</p>
-<h1 id="7-主线程可以捕获到子线程的异常吗？为什么？"><a href="#7-主线程可以捕获到子线程的异常吗？为什么？" class="headerlink" title="7. 主线程可以捕获到子线程的异常吗？为什么？"></a>7. 主线程可以捕获到子线程的异常吗？为什么？</h1><p>不能。首先线程实现了runnable接口的run方法，run方法没有抛出任何的异常，这也就说明线程内的方法<br>只能在线程内部自己处理。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wenfei Wang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="细雨招摇过远帆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">Java-八股文-3-Java多线程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-29 10:27:45" itemprop="dateModified" datetime="2022-04-29T10:27:45+08:00">2022-04-29</time>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-28 00:00:00 / Modified: 23:49:43" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
-            </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -442,7 +744,7 @@
 <h2 id="3-什么是守护线程？"><a href="#3-什么是守护线程？" class="headerlink" title="3.什么是守护线程？"></a>3.什么是守护线程？</h2><p>守护线程是程序运行的时候在后台提供一种通用服务的线程。</p>
 <h2 id="4-Java开启线程的方式？"><a href="#4-Java开启线程的方式？" class="headerlink" title="4.Java开启线程的方式？"></a>4.Java开启线程的方式？</h2><p>1.继承Thread类<br>thread类本质上实现了runnable接口，其start方法内调用了runnable的run方法<br>2.实现Runnable接口<br>实现Runnable接口后将其作为参数初始化Thread，调用start方法<br>3.实现Callable接口</p>
 <h2 id="5-Runnable-和-Callable-有什么区别？"><a href="#5-Runnable-和-Callable-有什么区别？" class="headerlink" title="5.Runnable 和 Callable 有什么区别？"></a>5.Runnable 和 Callable 有什么区别？</h2><p>Runnable的run方法返回值是null，Callable的call方法有返回值，并且支持泛型<br>Runnable的run方法只可以抛出运行时异常，不能捕获异常，Callable的call方法支持抛出异常</p>
-<h2 id="6-Java线程状态以及转换"><a href="#6-Java线程状态以及转换" class="headerlink" title="6.Java线程状态以及转换"></a>6.Java线程状态以及转换</h2><p><img src="/../pictures/Go/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/1.png" alt="image"></p>
+<h2 id="6-Java线程状态以及转换"><a href="#6-Java线程状态以及转换" class="headerlink" title="6.Java线程状态以及转换"></a>6.Java线程状态以及转换</h2><p><img src="/source/pictures/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/1.png" alt="image"></p>
 <h2 id="7-Java中Sleep-和wait"><a href="#7-Java中Sleep-和wait" class="headerlink" title="7.Java中Sleep()和wait()"></a>7.Java中Sleep()和wait()</h2><p>1.sleep是Thread的方法，wait是Object的方法<br>2.sleep不会释放锁，wait会释放锁，进入线程等待池<br>3.wait只能在同步代码块中使用，sleep可以在线程中使用</p>
 <h2 id="8-Java怎么保证线程安全？"><a href="#8-Java怎么保证线程安全？" class="headerlink" title="8.Java怎么保证线程安全？"></a>8.Java怎么保证线程安全？</h2><p>1.使用线程安全的类<br>2.使用synchronized关键字<br>3.使用手动锁lock</p>
 <h2 id="9-Java实现线程同步？"><a href="#9-Java实现线程同步？" class="headerlink" title="9.Java实现线程同步？"></a>9.Java实现线程同步？</h2><p>1.synchronized关键字<br>2.使用重入锁ReentrantLock<br>3.使用ThreadLocal变量<br>4.使用阻塞队列 LinkedBlockingQueue<br>5.使用RAS原子变量</p>
@@ -476,7 +778,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -490,7 +792,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/28/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/" class="post-title-link" itemprop="url">Java-八股文-5-Java JVM</a>
+            <a href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/" class="post-title-link" itemprop="url">Java-八股文-5-Java JVM</a>
         </h2>
 
         <div class="post-meta">
@@ -499,10 +801,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-28 00:00:00 / Modified: 23:49:43" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+              <time title="Created: 2022-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-29 10:30:14" itemprop="dateModified" datetime="2022-04-29T10:30:14+08:00">2022-04-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -525,10 +833,17 @@
 
       
           <h1 id="Java-八股文-1-Java-JVM"><a href="#Java-八股文-1-Java-JVM" class="headerlink" title="Java-八股文-1-Java JVM"></a>Java-八股文-1-Java JVM</h1><h2 id="1-说一下-JVM-的主要组成部分？及其作用？"><a href="#1-说一下-JVM-的主要组成部分？及其作用？" class="headerlink" title="1.说一下 JVM 的主要组成部分？及其作用？"></a>1.说一下 JVM 的主要组成部分？及其作用？</h2><p>①类加载器：加载类文件到内存<br>②栈区：栈也叫栈内存，是java程序的运行区，是在线程创建时创建，它的生命周期跟随线程的生命周期，线程结束栈内存释放；<br>③堆内存：类的加载器读取了类文件之后，需要把类、方法、常变量放到堆内存中<br>④方法区：所有的类级数据将存储在这里，包括静态变量。每个JVM只有一个方法区，它是一个共享资源;</p>
-<h2 id="2-谈谈对运行时数据区的理解？"><a href="#2-谈谈对运行时数据区的理解？" class="headerlink" title="2.谈谈对运行时数据区的理解？"></a>2.谈谈对运行时数据区的理解？</h2><p>主要是五部分：程序计数器、方法区、虚拟机栈、本地方法栈、堆<br><img src="/../pictures/Go/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%20JVM/1.png" alt="image"></p>
+<h2 id="2-谈谈对运行时数据区的理解？"><a href="#2-谈谈对运行时数据区的理解？" class="headerlink" title="2.谈谈对运行时数据区的理解？"></a>2.谈谈对运行时数据区的理解？</h2><p>主要是五部分：程序计数器、方法区、虚拟机栈、本地方法栈、堆<br>![image](source&#x2F;pictures&#x2F;Java&#x2F;Java-八股文-1-Java JVM&#x2F;1.png)</p>
 <h2 id="3-堆和栈的区别是什么？"><a href="#3-堆和栈的区别是什么？" class="headerlink" title="3. 堆和栈的区别是什么？"></a>3. 堆和栈的区别是什么？</h2><p>栈中存储的是局部变量<br>存储的是数组和对象（其实数组就是对象），凡是new建立的都是在堆中，堆中存放的都是实体（对象），实体用于封装数据，而且是封装多个（实体的多个属性），如果一个数据消失，这个实体也没有消失，还可以用，所以堆是不会随时释放的，但是栈不一样，栈里存放的都是单个变量，变量被释放了，那就没有了。</p>
 <h2 id="4-判断垃圾可以回收的方法"><a href="#4-判断垃圾可以回收的方法" class="headerlink" title="4.判断垃圾可以回收的方法"></a>4.判断垃圾可以回收的方法</h2><p>①引用计数法<br>的基本思想是堆中每个对象都有一个引用计数器，每当有一个地方引用它，计数器的值就加1；当引用失效时，计数器的值就减1。计数器值为0的对象可以被当做垃圾回收。<br>②可达性分析法<br>Java语言是通过可达性分析算法来判断对象是否存活的。这个算法的基本思想是以 GC Root 对象为起点，开始往下搜索，所走过的路径称为引用链，当 GC Root 和一个对象之间没有任何引用链相连时，则证明此对象是不可用的。</p>
 <h2 id="5-垃圾回收算法"><a href="#5-垃圾回收算法" class="headerlink" title="5.垃圾回收算法"></a>5.垃圾回收算法</h2><p>①标记-清除算法<br>②标记-复制算法<br>③标记-整理算法</p>
+<h2 id="6-分代收集算法？为什么要使用分代收集算法？"><a href="#6-分代收集算法？为什么要使用分代收集算法？" class="headerlink" title="6.分代收集算法？为什么要使用分代收集算法？"></a>6.分代收集算法？为什么要使用分代收集算法？</h2><p>根据对象的存活周期，把内存分成多个区域，不同区域使用不同的回收算法回收对象。<br>新生代：由于新生代对象的生命周期一般较短，因此可以用标记-复制算法来进行收集<br>老年代：由于老年代对象存活率比较高，可以用标记-清除算法或标记-整理算法来进行收集。</p>
+<h2 id="7-JVM垃圾收集参数"><a href="#7-JVM垃圾收集参数" class="headerlink" title="7.JVM垃圾收集参数"></a>7.JVM垃圾收集参数</h2><p>![img.png](source&#x2F;pictures&#x2F;Java&#x2F;Java-八股文-1-Java JVM&#x2F;2.png)</p>
+<h2 id="8-浮动垃圾"><a href="#8-浮动垃圾" class="headerlink" title="8.浮动垃圾"></a>8.浮动垃圾</h2><p>用户线程和GC线程是并行运作的，如果说在一次GC中，从GC Root的位置开始走到某处，<br>在已经走过的路径上，用户线程又产生了垃圾，这样的垃圾就是浮动垃圾。</p>
+<h2 id="9-堆内存碎片"><a href="#9-堆内存碎片" class="headerlink" title="9.堆内存碎片"></a>9.堆内存碎片</h2><p>在Java堆中，若干个对象有可能是连续存储的。这个时候如果触发了GC，导致一些对象被回收，<br>则会在这些对象原有的位置留下内存的空洞，这些空洞有可能不能让任何一个新的对象容纳进去，就会产生内存空间上的<br>浪费，也就是内存碎片。<br>Java在发现堆碎片化后会触发Full GC，让对象都靠一侧移动，以变成一个连续的存储空间。</p>
+<h2 id="10-常用的垃圾收集器有哪些？"><a href="#10-常用的垃圾收集器有哪些？" class="headerlink" title="10.常用的垃圾收集器有哪些？"></a>10.常用的垃圾收集器有哪些？</h2><p>①CMS<br>CMS 全称 Concurrent Mark Sweep 并发标记清除垃圾回收器。CMS 是一种以获取最短停顿时间为目的的垃圾回收器。提到停顿时间，<br>我们都知道任何垃圾回收器在进行工作的时候都会出现 STW，Stop the World 停止用户进程，这对业务来说只很难接受的，但是现在市面上所有的垃圾回收器都无法避免这个问题，只能最大化的去优化，从而降低停顿的时间。<br>②G1<br>G1 全称 Garbage-First 是一种面向服务器的垃圾回收器，通过将堆内存划分为多个 Region 来实现可预测的停顿时间模型。在 G1 当中，新生代和老年代已经不再是物理隔离，而都是被划分一个个 Region 区域。<br>正是由于这种可预测的时间停顿模型让 G1 成为了一个高吞吐量的垃圾回收器。G1 能充分利用 CPU，多核环境下可以缩短 STW 的时间。</p>
+<h2 id="11-常用的监控JVM的参数？"><a href="#11-常用的监控JVM的参数？" class="headerlink" title="11.常用的监控JVM的参数？"></a>11.常用的监控JVM的参数？</h2><p>1.top 查看当前进程的使用情况(CPU占有率，内存使用情况，服务器负载情况)<br>2.jps 查看本机jvm进程<br>3.jinfo 可以输出或修改的java进程的一些参数<br>4.jstat 可以用来监视jvm内存内的各种堆和非堆的大小及其内存使用量<br>5.jstack：堆栈跟踪工具，一般用于查看某个进程包含线程的情况<br>6.jmap：打印出某个java进程（使用pid）内存内的所有对象的情况。一般用于查看内存占用情况。<br>7.jconsole：一个java GUI监视工具，可以以图表化的形式显示各种数据。并可通过远程连接监视远程的服务器的jvm进程。</p>
+<h2 id="12-类文件结构"><a href="#12-类文件结构" class="headerlink" title="12.类文件结构"></a>12.类文件结构</h2><p>![image](source&#x2F;pictures&#x2F;Java&#x2F;Java-八股文-1-Java JVM&#x2F;3.png)</p>
 
       
     </div>
@@ -548,7 +863,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/24/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/24/Opus/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -562,7 +877,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/24/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/" class="post-title-link" itemprop="url">图片素材库网站-概要设计-一</a>
+            <a href="/2022/04/24/Opus/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/" class="post-title-link" itemprop="url">图片素材库网站-概要设计-一</a>
         </h2>
 
         <div class="post-meta">
@@ -579,7 +894,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-28 15:22:02" itemprop="dateModified" datetime="2022-04-28T15:22:02+08:00">2022-04-28</time>
+                <time title="Modified: 2022-04-29 10:27:45" itemprop="dateModified" datetime="2022-04-29T10:27:45+08:00">2022-04-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -603,267 +918,14 @@
 
       
           <h1 id="v1-0"><a href="#v1-0" class="headerlink" title="v1.0"></a><em><em>v1.0</em></em></h1><h2 id="静态建模"><a href="#静态建模" class="headerlink" title="静态建模"></a>静态建模</h2><h3 id="领域模型"><a href="#领域模型" class="headerlink" title="领域模型"></a>领域模型</h3><p>在第一版概要设计中，主要涵盖以下几个类<br>1.User 用户类 负责用户账户的相关操作<br>2.Artwork 作品类 负责对于图片作品的抽象<br>3.Image 图像类 也即是Artwork的视觉表现对象 能够实现Artwork与图像文件本身内容的解耦<br>4.Album 专辑 用户建立的作品集<br>5.Category 种类 作品的分类<br>6.Collection 收藏<br>7.ThumbUp 点赞<br>8.Comment 评论  </p>
-<p><img src="/../pictures/Go/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/1.png" alt="image"></p>
+<p><img src="/source/pictures/Opus/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/1.png" alt="image"></p>
 <h3 id="逻辑模型"><a href="#逻辑模型" class="headerlink" title="逻辑模型"></a>逻辑模型</h3><p>ER图： </p>
-<p><img src="/../pictures/Go/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/2.png" alt="image"></p>
+<p><img src="/source/pictures/Opus/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/2.png" alt="image"></p>
 <p>2022-4-28 ER图修改为：</p>
-<p><img src="/../pictures/Go/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/5.png" alt="image"></p>
-<h2 id="动态建模"><a href="#动态建模" class="headerlink" title="动态建模"></a>动态建模</h2><h3 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h3><h4 id="用户上传作品"><a href="#用户上传作品" class="headerlink" title="用户上传作品"></a>用户上传作品</h4><p><img src="/../pictures/Go/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/3.png" alt="image"></p>
+<p><img src="/source/pictures/Opus/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/5.png" alt="image"></p>
+<h2 id="动态建模"><a href="#动态建模" class="headerlink" title="动态建模"></a>动态建模</h2><h3 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h3><h4 id="用户上传作品"><a href="#用户上传作品" class="headerlink" title="用户上传作品"></a>用户上传作品</h4><p><img src="/source/pictures/Opus/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/3.png" alt="image"></p>
 <p>2022-4-28 用户上传作品修改为</p>
-<p><img src="/../pictures/Go/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/4.png" alt="image"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/24/Opus-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90-%E4%B8%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wenfei Wang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="细雨招摇过远帆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/24/Opus-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90-%E4%B8%80/" class="post-title-link" itemprop="url">图片素材库网站-需求分析-一</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-24 00:00:00 / Modified: 11:02:51" itemprop="dateCreated datePublished" datetime="2022-04-24T00:00:00+08:00">2022-04-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SoftwareEngineering/" itemprop="url" rel="index"><span itemprop="name">SoftwareEngineering</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="v1-0"><a href="#v1-0" class="headerlink" title="v1.0"></a><em><em>v1.0</em></em></h1><h2 id="用户故事"><a href="#用户故事" class="headerlink" title="用户故事"></a>用户故事</h2><h3 id="普通用户"><a href="#普通用户" class="headerlink" title="普通用户"></a>普通用户</h3><p><em>小明是一个前端工程师，这份工作难免会遇到寻找网页素材的问题。<br>小明找到了本网站来解决他的需求，首先小明登入主页，注册了账号<br>并且成功登录</em><br><em>小明登入主页发现恰好主页上有一些图片符合他<br>的需求，小明点开了该幅图片仔细观摩，考虑之后决定下载该图片，<br>并且给该图片点赞并评论感谢作者</em><br><em>小明又想在特定主题下搜索他需求的图片，他在搜索框中搜索了<br>关键词，并对产生的结果进行了进一步的筛选，最终确定了所需要的图片</em><br><em>小明根据自己想要的分类观看图片，找到合适的图片后对图片<br>进行了收藏，并且转发给同事。</em></p>
-<h3 id="创作用户"><a href="#创作用户" class="headerlink" title="创作用户"></a>创作用户</h3><p><em>小红是一个摄影师，热衷于为世界增添多媒体素材，为了寻求进步与认可，<br>小红来到本网站作为创作者，首先小红登入主页并且注册了账号，之后成功登录</em><br><em>小红点击主页上的投稿按钮，传入本地的创作文件</em><br><em>小红点击自己的个人界面，看到自己的创作数据以及作品</em><br><em>小红开设了一个专辑，来容纳今后可能的同一主题的摄影作品</em></p>
-<h2 id="用例分析"><a href="#用例分析" class="headerlink" title="用例分析"></a>用例分析</h2><p>本系统的主要使用者有三类<br>1.普通用户<br>2.创作用户<br>3.系统管理员<br>系统的用例图如下：<br><img src="/../pictures/Go/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90-%E4%B8%80/1.png" alt="image"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/23/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%BA%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wenfei Wang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="细雨招摇过远帆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/23/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%BA%8C/" class="post-title-link" itemprop="url">Go语言学习笔记/并发(二)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-23T00:00:00+08:00">2022-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-24 10:57:09" itemprop="dateModified" datetime="2022-04-24T10:57:09+08:00">2022-04-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Go语言学习笔记-x2F-并发-二）"><a href="#Go语言学习笔记-x2F-并发-二）" class="headerlink" title="Go语言学习笔记&#x2F;并发(二）"></a>Go语言学习笔记&#x2F;并发(二）</h1><h2 id="Fruits-On-the-Table-Model-吃水果模型"><a href="#Fruits-On-the-Table-Model-吃水果模型" class="headerlink" title="Fruits On the Table Model 吃水果模型"></a>Fruits On the Table Model 吃水果模型</h2><h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h3><p>现有一张桌子，爸爸不停地向桌子上放一个水果，这个水果可能是橘子也可能是苹果，爸爸放置水果是完全随机的。桌子旁边还有儿子和女儿，儿子在桌子上有苹果的情况下把苹果取走吃掉，女儿在桌子上有橘子的情况下把橘子取走吃掉。<br>现在尝试用Go的协程来实现以上的模型。</p>
-<h3 id="2-Analyse"><a href="#2-Analyse" class="headerlink" title="2.Analyse"></a>2.Analyse</h3><p>对这样一个并发模型进行分析，首先显然我们至少需要三个协程，一个协程模拟爸爸的行为，向桌子上放水果，另外两个模拟儿子和女儿取走水果。<br>这个问题有点像之前说到过的生产者、消费者模型（以下简称P&#x2F;C模型)，但是又有些不同。<br>生产者角度，P&#x2F;C模型中的生产者只产生同一类型的数据，而在吃水果模型中，生产者会随机产生Orange和Apple两种不同类型的数据。<br>消费者角度，P&#x2F;C模型中的消费者消费时是不需要考虑数据类型的，而在吃水果模型中，消费者中儿子只消费Apple，女儿只消费Orange.<br>这个模型的流程图如下<br><img src="/../pictures/Go/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%BA%8C/1.jpg" alt="image"><br><img src="/../pictures/Go/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%BA%8C/2.jpg" alt="image"></p>
-<h3 id="3-Implement-In-Go"><a href="#3-Implement-In-Go" class="headerlink" title="3.Implement In Go"></a>3.Implement In Go</h3><p>在Go中的单线程环境下我们是不需要锁来保证协程的一致性的。因此在Go中，做多协程的工作实质上只需要想清楚，一条消息从生产到消费，是从哪端传递到哪端.<br>例如在吃水果问题中，生产者生产的数据，事实上是两类，也就是Apple结构和Orange结构，Apple结构只有Son会进行消费，Orange结构只有Daughter会进行消费.<br>所以在Go中，我们可以把这张桌子抽象成两个channel，一个传递Apple，一个传递Orange.</p>
-<h3 id="4-Code"><a href="#4-Code" class="headerlink" title="4.Code"></a>4.Code</h3><p>先定义两个水果的结构和相关方法</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Apple <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name   <span class="type">string</span></span><br><span class="line">	Weight <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(apple *Apple)</span></span> Produce(channel <span class="keyword">chan</span> *Apple) &#123;</span><br><span class="line">	apple.Weight = rand.Int() % <span class="number">100</span></span><br><span class="line">	channel &lt;- apple</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Orange <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name   <span class="type">string</span></span><br><span class="line">	Weight <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(orange *Orange)</span></span> Produce(channel <span class="keyword">chan</span> *Orange) &#123;</span><br><span class="line">	orange.Weight = rand.Int() % <span class="number">100</span></span><br><span class="line">	channel &lt;- orange</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义Table的结构与方法</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Table <span class="keyword">struct</span> &#123;</span><br><span class="line">	AppleChan  <span class="keyword">chan</span> *fruit.Apple</span><br><span class="line">	OrangeChan <span class="keyword">chan</span> *fruit.Orange</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(table *Table)</span></span> NewTable(appleChan <span class="keyword">chan</span> *fruit.Apple, orangeChan <span class="keyword">chan</span> *fruit.Orange) &#123;</span><br><span class="line">	table.AppleChan = appleChan</span><br><span class="line">	table.OrangeChan = orangeChan</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(table *Table)</span></span> Produce(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		flag := rand.Int() % <span class="number">2</span></span><br><span class="line">		<span class="keyword">if</span> flag == <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">var</span> apple fruit.Apple</span><br><span class="line">			<span class="built_in">println</span>(<span class="string">&quot;Produce An Apple&quot;</span>)</span><br><span class="line">			apple.Produce(table.AppleChan)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">var</span> orange fruit.Orange</span><br><span class="line">			<span class="built_in">println</span>(<span class="string">&quot;Produce An Orange&quot;</span>)</span><br><span class="line">			orange.Produce(table.OrangeChan)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义Son和Daughter</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Son <span class="keyword">struct</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(son *Son)</span></span> Eat(table *table.Table) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		f := &lt;-table.AppleChan</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;Son Eats An Apple Weights &quot;</span>, f.Weight)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Daughter <span class="keyword">struct</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(daughter *Daughter)</span></span> Eat(table *table.Table) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		f := &lt;-table.OrangeChan</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;Daughter Eats An Orange Weights &quot;</span>, f.Weight)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试方法Test()</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test</span><span class="params">()</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	wg.Add(<span class="number">3</span>)</span><br><span class="line">	<span class="keyword">var</span> t table2.Table</span><br><span class="line">	appleChannel := <span class="built_in">make</span>(<span class="keyword">chan</span> *fruit.Apple, <span class="number">3</span>)</span><br><span class="line">	orangeChannel := <span class="built_in">make</span>(<span class="keyword">chan</span> *fruit.Orange, <span class="number">3</span>)</span><br><span class="line">	t.NewTable(appleChannel, orangeChannel)</span><br><span class="line">	<span class="keyword">var</span> son person.Son</span><br><span class="line">	<span class="keyword">var</span> daughter person.Daughter</span><br><span class="line">	<span class="keyword">go</span> t.Produce(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> son.Eat(&amp;t)</span><br><span class="line">	<span class="keyword">go</span> daughter.Eat(&amp;t)</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果<br><img src="/../pictures/Go/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%BA%8C/3.jpg" alt="image"></p>
-<h3 id="5-BrainStorm"><a href="#5-BrainStorm" class="headerlink" title="5.BrainStorm"></a>5.BrainStorm</h3><p>现在假设我们的需求发生了改变，爸爸觉得不停地放水果给孩子吃糖分太高了，对身体不好，因此他修改了自己放水果的原则：当且仅当桌子上没有水果时，爸爸才会在桌子上随机放置一个水果。在这样的规则下，如何实现这个并发模型呢？<br>要想清楚这个问题，我们必须将这个问题抽丝剥茧考虑的更加清楚，我们的最终目的是什么呢？是在保证数据一致性的情况下，让每个人利用最少的信息完成自己的任务。对于无限制的吃水果模型来说，爸爸不需要任何信息，只需要产生水果而已，对于儿子和女儿，他们需要的信息也只是这个水果本身的类型。<br>而在加入限制的模型中，产生了什么变化呢？<br>在儿子和女儿那一边，他们是不受影响的，因为他们仍然只是在有水果时（也就是从通道接收到值时）才会执行自己的任务，但是爸爸呢？如果桌子上已经有水果，那么他就不能再继续执行自己的动作，而应该阻塞，等待桌子上水果被消费。<br>用抽象的思维来考虑这件事，我们会发现，这个桌子是否是空的，成为了这个模型中一个不可或缺的信息，因此凭借Go中用通道来实现信息传递的直觉，我们将Table结构修改如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Table <span class="keyword">struct</span> &#123;</span><br><span class="line">	AppleChan  <span class="keyword">chan</span> *fruit.Apple</span><br><span class="line">	OrangeChan <span class="keyword">chan</span> *fruit.Orange</span><br><span class="line">	EmptyChan  <span class="keyword">chan</span> <span class="type">bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(table *Table)</span></span> NewTable(appleChan <span class="keyword">chan</span> *fruit.Apple, orangeChan <span class="keyword">chan</span> *fruit.Orange, emptyChannel <span class="keyword">chan</span> <span class="type">bool</span>) &#123;</span><br><span class="line">	table.AppleChan = appleChan</span><br><span class="line">	table.OrangeChan = orangeChan</span><br><span class="line">	table.EmptyChan = emptyChannel</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(table *Table)</span></span> Produce(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		flag := rand.Int() % <span class="number">2</span></span><br><span class="line">		_ = &lt;-table.EmptyChan</span><br><span class="line">		<span class="keyword">if</span> flag == <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">var</span> apple fruit.Apple</span><br><span class="line">			<span class="built_in">println</span>(<span class="string">&quot;Produce An Apple&quot;</span>)</span><br><span class="line">			apple.Produce(table.AppleChan)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">var</span> orange fruit.Orange</span><br><span class="line">			<span class="built_in">println</span>(<span class="string">&quot;Produce An Orange&quot;</span>)</span><br><span class="line">			orange.Produce(table.OrangeChan)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Son和Daughter修改如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(daughter *Daughter)</span></span> Eat(table *table.Table) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		f := &lt;-table.OrangeChan</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;Daughter Eats An Orange Weights &quot;</span>, f.Weight)</span><br><span class="line">		table.EmptyChan &lt;- <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(son *Son)</span></span> Eat(table *table.Table) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		f := &lt;-table.AppleChan</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;Son Eats An Apple Weights &quot;</span>, f.Weight)</span><br><span class="line">		table.EmptyChan &lt;- <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Test():</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test</span><span class="params">()</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	wg.Add(<span class="number">3</span>)</span><br><span class="line">	<span class="keyword">var</span> t table.Table</span><br><span class="line">	appleChannel := <span class="built_in">make</span>(<span class="keyword">chan</span> *fruit.Apple, <span class="number">3</span>)</span><br><span class="line">	orangeChannel := <span class="built_in">make</span>(<span class="keyword">chan</span> *fruit.Orange, <span class="number">3</span>)</span><br><span class="line">	boolChannel := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>, <span class="number">1</span>)</span><br><span class="line">	t.NewTable(appleChannel, orangeChannel, boolChannel)</span><br><span class="line">	t.EmptyChan &lt;- <span class="literal">true</span></span><br><span class="line">	<span class="keyword">var</span> son person.Son</span><br><span class="line">	<span class="keyword">var</span> daughter person.Daughter</span><br><span class="line">	<span class="keyword">go</span> t.Produce(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> son.Eat(&amp;t)</span><br><span class="line">	<span class="keyword">go</span> daughter.Eat(&amp;t)</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：<br><img src="/../pictures/Go/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%BA%8C/4.jpg" alt="image"></p>
-<h3 id="6-Spirits"><a href="#6-Spirits" class="headerlink" title="6.Spirits"></a>6.Spirits</h3><p>channel是协程之间信息的通道，在面对一个多协程的问题时，要考虑清楚每个协程完成任务需要的最小信息都是哪些。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/22/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wenfei Wang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="细雨招摇过远帆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/22/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/" class="post-title-link" itemprop="url">Go语言学习笔记/并发(一)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-22T00:00:00+08:00">2022-04-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-24 10:57:09" itemprop="dateModified" datetime="2022-04-24T10:57:09+08:00">2022-04-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Go语言学习笔记-x2F-并发-一"><a href="#Go语言学习笔记-x2F-并发-一" class="headerlink" title="Go语言学习笔记&#x2F;并发(一)"></a>Go语言学习笔记&#x2F;并发(一)</h1><h2 id="Reader-Writer-Model-读者-x2F-写者并发模型"><a href="#Reader-Writer-Model-读者-x2F-写者并发模型" class="headerlink" title="Reader Writer Model 读者&#x2F;写者并发模型"></a>Reader Writer Model 读者&#x2F;写者并发模型</h2><h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h3><p>读者&#x2F;写者模型基本上可以称作是最简单的并发模型了，也就是在读者、写者两方中，<br>写者源源不断地产生数据，读者源源不断地读取数据。<br>其逻辑大致如下所示</p>
-<p><img src="/../pictures/Go/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/1.png" alt="image"><br><img src="/../pictures/Go/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/2.png" alt="image"></p>
-<h3 id="2-Implementation"><a href="#2-Implementation" class="headerlink" title="2.Implementation"></a>2.Implementation</h3><p>在Java中，我们可以维护一个读者写者共享的临界区资源buffer来实现读者、写者模型。<br>但在Go中，由于以下两个Go的特性，问题可以简化<br>①Go中的并发模型是Go原生的goroutine协程，协程相较于Java的线程，好处在于在大部分简单情境下无需像Java中一样处理资源竞争产生的一致性问题。其原因在于，go在单线程的情境下，多个协程是交替执行的，不存在多个协程同时进行的情况。<br>②Go中提供了chan <type>也就是channel类型，能够实现协程之间的通信。</p>
-<h3 id="3-Code"><a href="#3-Code" class="headerlink" title="3.Code"></a>3.Code</h3><p>首先定义两个结构以及他们的构造函数<br>之后实现两个结构的Read,Write方法</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Reader <span class="keyword">struct</span> &#123;</span><br><span class="line">	id      <span class="type">int</span></span><br><span class="line">	channel <span class="keyword">chan</span> <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reader *Reader)</span></span> NewReader(id <span class="type">int</span>, channel <span class="keyword">chan</span> <span class="type">int</span>) &#123;</span><br><span class="line">	reader.id = id</span><br><span class="line">	reader.channel = channel</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reader *Reader)</span></span> Read(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		value := &lt;-reader.channel</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;reader &quot;</span>, reader.id, <span class="string">&quot; consumes&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Writer <span class="keyword">struct</span> &#123;</span><br><span class="line">	id      <span class="type">int</span></span><br><span class="line">	channel <span class="keyword">chan</span> <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(writer *Writer)</span></span> NewWriter(id <span class="type">int</span>, channel <span class="keyword">chan</span> <span class="type">int</span>) &#123;</span><br><span class="line">	writer.id = id</span><br><span class="line">	writer.channel = channel</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(writer Writer)</span></span> Write(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		value := rand.Int() % <span class="number">10</span></span><br><span class="line">		writer.channel &lt;- value</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;writer &quot;</span>, writer.id, <span class="string">&quot; produces&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>之后编写一个Test方法</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test</span><span class="params">()</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	<span class="keyword">var</span> writer Writer</span><br><span class="line">	<span class="keyword">var</span> reader Reader</span><br><span class="line">	channel := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">3</span>)</span><br><span class="line">	reader.NewReader(<span class="number">1</span>, channel)</span><br><span class="line">	writer.NewWriter(<span class="number">1</span>, channel)</span><br><span class="line">	wg.Add(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> reader.Read(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> writer.Write(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> reader.Read(<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">go</span> reader.Read(<span class="number">3</span>)</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>试运行一下<br><img src="/../pictures/Go/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91-%E4%B8%80/3.png" alt="image"></p>
-<p>最后在测试的过程中，感觉线程每秒开的太多了好烦，就又写了两个函数，能够利用go的timeTicker来实现定时执行循环体</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reader *Reader)</span></span> ReadAtIntervals(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	ticker := time.NewTicker(<span class="number">1</span> * time.Second)</span><br><span class="line">	<span class="keyword">for</span> _ = <span class="keyword">range</span> ticker.C &#123;</span><br><span class="line">		value := &lt;-reader.channel</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;reader &quot;</span>, reader.id, <span class="string">&quot; consumes&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(writer Writer)</span></span> WriteInIntervals(serialId <span class="type">int</span>) &#123;</span><br><span class="line">	ticker := time.NewTicker(<span class="number">1</span> * time.Second)</span><br><span class="line">	<span class="keyword">for</span> _ = <span class="keyword">range</span> ticker.C &#123;</span><br><span class="line">		value := rand.Int() % <span class="number">10</span></span><br><span class="line">		writer.channel &lt;- value</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">&quot;writer &quot;</span>, writer.id, <span class="string">&quot; produces&quot;</span>, <span class="string">&quot;:&quot;</span>, value, <span class="string">&quot; serial_id:&quot;</span>, serialId)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样代码在执行的过程中就会1s执行一次函数体啦，更容易观察运行的结果<br>另外，在多线程中比较常见的还有Producer-Consumer模型，它与本文中提到的Reader-Writer模型很类似，只是把channel中传递的值从int类型改成了一个struct结构体类型，同样只用到一个channel.因此不再详细去记录。<br>Reader-Writer模型和Producer-Consumer模型的代码在我的Github仓库中都有<br><a target="_blank" rel="noopener" href="https://github.com/xmu-csnoob/GoStudy">Github:GoStudy</a></p>
+<p><img src="/source/pictures/Opus/%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E5%BA%93%E7%BD%91%E7%AB%99-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/4.png" alt="image"></p>
 
       
     </div>
@@ -881,6 +943,9 @@
 
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -944,7 +1009,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

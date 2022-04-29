@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xmu-csnoob.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Java-八股文-1-Java JVM1.说一下 JVM 的主要组成部分？及其作用？①类加载器：加载类文件到内存②栈区：栈也叫栈内存，是java程序的运行区，是在线程创建时创建，它的生命周期跟随线程的生命周期，线程结束栈内存释放；③堆内存：类的加载器读取了类文件之后，需要把类、方法、常变量放到堆内存中④方法区：所有的类级数据将存储在这里，包括静态变量。每个JVM只有一个方法区，它是一个共享资源;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-八股文-5-Java JVM">
+<meta property="og:url" content="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/index.html">
+<meta property="og:site_name" content="细雨招摇过远帆">
+<meta property="og:description" content="Java-八股文-1-Java JVM1.说一下 JVM 的主要组成部分？及其作用？①类加载器：加载类文件到内存②栈区：栈也叫栈内存，是java程序的运行区，是在线程创建时创建，它的生命周期跟随线程的生命周期，线程结束栈内存释放；③堆内存：类的加载器读取了类文件之后，需要把类、方法、常变量放到堆内存中④方法区：所有的类级数据将存储在这里，包括静态变量。每个JVM只有一个方法区，它是一个共享资源;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-29T02:30:14.026Z">
+<meta property="article:author" content="Wenfei Wang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Java-八股文-5-Java JVM | 细雨招摇过远帆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">细雨招摇过远帆</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-关于作者">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于作者</a>
+
+  </li>
+        <li class="menu-item menu-item-专栏">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>专栏</a>
+
+  </li>
+        <li class="menu-item menu-item-时间轴">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java-八股文-5-Java JVM
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-29 10:30:14" itemprop="dateModified" datetime="2022-04-29T10:30:14+08:00">2022-04-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="far fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java-八股文-1-Java-JVM"><a href="#Java-八股文-1-Java-JVM" class="headerlink" title="Java-八股文-1-Java JVM"></a>Java-八股文-1-Java JVM</h1><h2 id="1-说一下-JVM-的主要组成部分？及其作用？"><a href="#1-说一下-JVM-的主要组成部分？及其作用？" class="headerlink" title="1.说一下 JVM 的主要组成部分？及其作用？"></a>1.说一下 JVM 的主要组成部分？及其作用？</h2><p>①类加载器：加载类文件到内存<br>②栈区：栈也叫栈内存，是java程序的运行区，是在线程创建时创建，它的生命周期跟随线程的生命周期，线程结束栈内存释放；<br>③堆内存：类的加载器读取了类文件之后，需要把类、方法、常变量放到堆内存中<br>④方法区：所有的类级数据将存储在这里，包括静态变量。每个JVM只有一个方法区，它是一个共享资源;</p>
+<h2 id="2-谈谈对运行时数据区的理解？"><a href="#2-谈谈对运行时数据区的理解？" class="headerlink" title="2.谈谈对运行时数据区的理解？"></a>2.谈谈对运行时数据区的理解？</h2><p>主要是五部分：程序计数器、方法区、虚拟机栈、本地方法栈、堆<br>![image](source&#x2F;pictures&#x2F;Java&#x2F;Java-八股文-1-Java JVM&#x2F;1.png)</p>
+<h2 id="3-堆和栈的区别是什么？"><a href="#3-堆和栈的区别是什么？" class="headerlink" title="3. 堆和栈的区别是什么？"></a>3. 堆和栈的区别是什么？</h2><p>栈中存储的是局部变量<br>存储的是数组和对象（其实数组就是对象），凡是new建立的都是在堆中，堆中存放的都是实体（对象），实体用于封装数据，而且是封装多个（实体的多个属性），如果一个数据消失，这个实体也没有消失，还可以用，所以堆是不会随时释放的，但是栈不一样，栈里存放的都是单个变量，变量被释放了，那就没有了。</p>
+<h2 id="4-判断垃圾可以回收的方法"><a href="#4-判断垃圾可以回收的方法" class="headerlink" title="4.判断垃圾可以回收的方法"></a>4.判断垃圾可以回收的方法</h2><p>①引用计数法<br>的基本思想是堆中每个对象都有一个引用计数器，每当有一个地方引用它，计数器的值就加1；当引用失效时，计数器的值就减1。计数器值为0的对象可以被当做垃圾回收。<br>②可达性分析法<br>Java语言是通过可达性分析算法来判断对象是否存活的。这个算法的基本思想是以 GC Root 对象为起点，开始往下搜索，所走过的路径称为引用链，当 GC Root 和一个对象之间没有任何引用链相连时，则证明此对象是不可用的。</p>
+<h2 id="5-垃圾回收算法"><a href="#5-垃圾回收算法" class="headerlink" title="5.垃圾回收算法"></a>5.垃圾回收算法</h2><p>①标记-清除算法<br>②标记-复制算法<br>③标记-整理算法</p>
+<h2 id="6-分代收集算法？为什么要使用分代收集算法？"><a href="#6-分代收集算法？为什么要使用分代收集算法？" class="headerlink" title="6.分代收集算法？为什么要使用分代收集算法？"></a>6.分代收集算法？为什么要使用分代收集算法？</h2><p>根据对象的存活周期，把内存分成多个区域，不同区域使用不同的回收算法回收对象。<br>新生代：由于新生代对象的生命周期一般较短，因此可以用标记-复制算法来进行收集<br>老年代：由于老年代对象存活率比较高，可以用标记-清除算法或标记-整理算法来进行收集。</p>
+<h2 id="7-JVM垃圾收集参数"><a href="#7-JVM垃圾收集参数" class="headerlink" title="7.JVM垃圾收集参数"></a>7.JVM垃圾收集参数</h2><p>![img.png](source&#x2F;pictures&#x2F;Java&#x2F;Java-八股文-1-Java JVM&#x2F;2.png)</p>
+<h2 id="8-浮动垃圾"><a href="#8-浮动垃圾" class="headerlink" title="8.浮动垃圾"></a>8.浮动垃圾</h2><p>用户线程和GC线程是并行运作的，如果说在一次GC中，从GC Root的位置开始走到某处，<br>在已经走过的路径上，用户线程又产生了垃圾，这样的垃圾就是浮动垃圾。</p>
+<h2 id="9-堆内存碎片"><a href="#9-堆内存碎片" class="headerlink" title="9.堆内存碎片"></a>9.堆内存碎片</h2><p>在Java堆中，若干个对象有可能是连续存储的。这个时候如果触发了GC，导致一些对象被回收，<br>则会在这些对象原有的位置留下内存的空洞，这些空洞有可能不能让任何一个新的对象容纳进去，就会产生内存空间上的<br>浪费，也就是内存碎片。<br>Java在发现堆碎片化后会触发Full GC，让对象都靠一侧移动，以变成一个连续的存储空间。</p>
+<h2 id="10-常用的垃圾收集器有哪些？"><a href="#10-常用的垃圾收集器有哪些？" class="headerlink" title="10.常用的垃圾收集器有哪些？"></a>10.常用的垃圾收集器有哪些？</h2><p>①CMS<br>CMS 全称 Concurrent Mark Sweep 并发标记清除垃圾回收器。CMS 是一种以获取最短停顿时间为目的的垃圾回收器。提到停顿时间，<br>我们都知道任何垃圾回收器在进行工作的时候都会出现 STW，Stop the World 停止用户进程，这对业务来说只很难接受的，但是现在市面上所有的垃圾回收器都无法避免这个问题，只能最大化的去优化，从而降低停顿的时间。<br>②G1<br>G1 全称 Garbage-First 是一种面向服务器的垃圾回收器，通过将堆内存划分为多个 Region 来实现可预测的停顿时间模型。在 G1 当中，新生代和老年代已经不再是物理隔离，而都是被划分一个个 Region 区域。<br>正是由于这种可预测的时间停顿模型让 G1 成为了一个高吞吐量的垃圾回收器。G1 能充分利用 CPU，多核环境下可以缩短 STW 的时间。</p>
+<h2 id="11-常用的监控JVM的参数？"><a href="#11-常用的监控JVM的参数？" class="headerlink" title="11.常用的监控JVM的参数？"></a>11.常用的监控JVM的参数？</h2><p>1.top 查看当前进程的使用情况(CPU占有率，内存使用情况，服务器负载情况)<br>2.jps 查看本机jvm进程<br>3.jinfo 可以输出或修改的java进程的一些参数<br>4.jstat 可以用来监视jvm内存内的各种堆和非堆的大小及其内存使用量<br>5.jstack：堆栈跟踪工具，一般用于查看某个进程包含线程的情况<br>6.jmap：打印出某个java进程（使用pid）内存内的所有对象的情况。一般用于查看内存占用情况。<br>7.jconsole：一个java GUI监视工具，可以以图表化的形式显示各种数据。并可通过远程连接监视远程的服务器的jvm进程。</p>
+<h2 id="12-类文件结构"><a href="#12-类文件结构" class="headerlink" title="12.类文件结构"></a>12.类文件结构</h2><p>![image](source&#x2F;pictures&#x2F;Java&#x2F;Java-八股文-1-Java JVM&#x2F;3.png)</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/24/Opus/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/" rel="prev" title="图片素材库网站-概要设计-一">
+      <i class="fa fa-chevron-left"></i> 图片素材库网站-概要设计-一
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="next" title="Java-八股文-3-Java多线程">
+      Java-八股文-3-Java多线程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java-JVM"><span class="nav-number">1.</span> <span class="nav-text">Java-八股文-1-Java JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AF%B4%E4%B8%80%E4%B8%8B-JVM-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86%EF%BC%9F%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.说一下 JVM 的主要组成部分？及其作用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%B0%88%E8%B0%88%E5%AF%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">2.谈谈对运行时数据区的理解？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">3. 堆和栈的区别是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%A4%E6%96%AD%E5%9E%83%E5%9C%BE%E5%8F%AF%E4%BB%A5%E5%9B%9E%E6%94%B6%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">4.判断垃圾可以回收的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">5.垃圾回收算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="nav-number">1.6.</span> <span class="nav-text">6.分代收集算法？为什么要使用分代收集算法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-JVM%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%8F%82%E6%95%B0"><span class="nav-number">1.7.</span> <span class="nav-text">7.JVM垃圾收集参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%B5%AE%E5%8A%A8%E5%9E%83%E5%9C%BE"><span class="nav-number">1.8.</span> <span class="nav-text">8.浮动垃圾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%A0%86%E5%86%85%E5%AD%98%E7%A2%8E%E7%89%87"><span class="nav-number">1.9.</span> <span class="nav-text">9.堆内存碎片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.10.</span> <span class="nav-text">10.常用的垃圾收集器有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9B%91%E6%8E%A7JVM%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%9F"><span class="nav-number">1.11.</span> <span class="nav-text">11.常用的监控JVM的参数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.12.</span> <span class="nav-text">12.类文件结构</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wenfei Wang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xmu-csnoob" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xmu-csnoob" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/395110618@qq.com" title="E-Mail → 395110618@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenfei Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

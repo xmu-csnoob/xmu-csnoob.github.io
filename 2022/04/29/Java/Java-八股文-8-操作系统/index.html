@@ -20,15 +20,19 @@
     var CONFIG = {"hostname":"xmu-csnoob.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="细雨招摇过远帆">
-<meta property="og:url" content="https://xmu-csnoob.github.io/archives/index.html">
+  <meta name="description" content="#Java-八股文-8-操作系统 1.进程间的通信方式有哪些？1.通过管道2.通过消息队列3.信号量4.共享内存5.socket 2.进程的调度算法有哪些？1.先来先服务2.最短作业优先3.最高相应比优先4.时间片轮转   3.什么是死锁？死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。 4.产生死锁的必要条件1.互">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-八股文-8-操作系统">
+<meta property="og:url" content="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-8-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="细雨招摇过远帆">
+<meta property="og:description" content="#Java-八股文-8-操作系统 1.进程间的通信方式有哪些？1.通过管道2.通过消息队列3.信号量4.共享内存5.socket 2.进程的调度算法有哪些？1.先来先服务2.最短作业优先3.最高相应比优先4.时间片轮转   3.什么是死锁？死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。 4.产生死锁的必要条件1.互">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-29T03:42:46.448Z">
 <meta property="article:author" content="Wenfei Wang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://xmu-csnoob.github.io/archives/">
+<link rel="canonical" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-8-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
 
 
 <script id="page-configurations">
@@ -36,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | 细雨招摇过远帆</title>
+  <title>Java-八股文-8-操作系统 | 细雨招摇过远帆</title>
   
 
 
@@ -150,234 +154,101 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 13 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-8-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java-八股文-8-操作系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-29 00:00:00 / Modified: 11:42:46" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">2022-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="far fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-29T00:00:00+08:00"
-              content="2022-04-29">
-          04-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url">
-            <span itemprop="name">Java-八股文-7-计算机网络</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-29T00:00:00+08:00"
-              content="2022-04-29">
-          04-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-8-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url">
-            <span itemprop="name">Java-八股文-8-操作系统</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-29T00:00:00+08:00"
-              content="2022-04-29">
-          04-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL/" itemprop="url">
-            <span itemprop="name">Java-八股文-6-MySQL</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-29T00:00:00+08:00"
-              content="2022-04-29">
-          04-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-9-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" itemprop="url">
-            <span itemprop="name">Java-八股文-9-消息队列</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-28T00:00:00+08:00"
-              content="2022-04-28">
-          04-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/" itemprop="url">
-            <span itemprop="name">Java-八股文-1-Java语言基础问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-28T00:00:00+08:00"
-              content="2022-04-28">
-          04-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/" itemprop="url">
-            <span itemprop="name">Java-八股文-4-Java Exception</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-28T00:00:00+08:00"
-              content="2022-04-28">
-          04-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-2-Java%E5%AE%B9%E5%99%A8/" itemprop="url">
-            <span itemprop="name">Java-八股文-2-Java容器</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-28T00:00:00+08:00"
-              content="2022-04-28">
-          04-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-3-Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url">
-            <span itemprop="name">Java-八股文-3-Java多线程</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-28T00:00:00+08:00"
-              content="2022-04-28">
-          04-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-5-Java%20JVM/" itemprop="url">
-            <span itemprop="name">Java-八股文-5-Java JVM</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-24T00:00:00+08:00"
-              content="2022-04-24">
-          04-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/24/Opus/Opus-%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1-%E4%B8%80/" itemprop="url">
-            <span itemprop="name">图片素材库网站-概要设计-一</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <p>#Java-八股文-8-操作系统</p>
+<h2 id="1-进程间的通信方式有哪些？"><a href="#1-进程间的通信方式有哪些？" class="headerlink" title="1.进程间的通信方式有哪些？"></a>1.进程间的通信方式有哪些？</h2><p>1.通过管道<br>2.通过消息队列<br>3.信号量<br>4.共享内存<br>5.socket</p>
+<h2 id="2-进程的调度算法有哪些？"><a href="#2-进程的调度算法有哪些？" class="headerlink" title="2.进程的调度算法有哪些？"></a>2.进程的调度算法有哪些？</h2><p>1.先来先服务<br>2.最短作业优先<br>3.最高相应比优先<br>4.时间片轮转  </p>
+<h2 id="3-什么是死锁？"><a href="#3-什么是死锁？" class="headerlink" title="3.什么是死锁？"></a>3.什么是死锁？</h2><p>死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。</p>
+<h2 id="4-产生死锁的必要条件"><a href="#4-产生死锁的必要条件" class="headerlink" title="4.产生死锁的必要条件"></a>4.产生死锁的必要条件</h2><p>1.互斥<br>2.请求与保持<br>3.不可剥夺<br>4.循环等待</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-6-MySQL/" rel="prev" title="Java-八股文-6-MySQL">
+      <i class="fa fa-chevron-left"></i> Java-八股文-6-MySQL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="next" title="Java-八股文-7-计算机网络">
+      Java-八股文-7-计算机网络 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
+  
+  
 
 
 
@@ -429,6 +300,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1.进程间的通信方式有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2.进程的调度算法有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">3.什么是死锁？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">4.产生死锁的必要条件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

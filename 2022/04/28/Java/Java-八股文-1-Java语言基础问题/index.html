@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xmu-csnoob.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#Java语言基础问题 1.解释下什么是面向对象？面向对象和面向过程的区别？面向过程是把完成功能的过程分成若干个步骤， 将这些步骤分散到不同的函数也可以说是方法中去，接下来只要依次调用这些步骤代表的方法即可。面向对象则是将整个需求按照特点、功能等将整个系统划分为若干个类(最常见的也就是模拟现实世界进行设计)，，将系统分解为不同的对象以及这些对象的行为。 2.解释一下面向对象的三大特性封装:封装指的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-八股文-1-Java语言基础问题">
+<meta property="og:url" content="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="细雨招摇过远帆">
+<meta property="og:description" content="#Java语言基础问题 1.解释下什么是面向对象？面向对象和面向过程的区别？面向过程是把完成功能的过程分成若干个步骤， 将这些步骤分散到不同的函数也可以说是方法中去，接下来只要依次调用这些步骤代表的方法即可。面向对象则是将整个需求按照特点、功能等将整个系统划分为若干个类(最常见的也就是模拟现实世界进行设计)，，将系统分解为不同的对象以及这些对象的行为。 2.解释一下面向对象的三大特性封装:封装指的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-28T12:07:20.244Z">
+<meta property="article:author" content="Wenfei Wang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Java-八股文-1-Java语言基础问题 | 细雨招摇过远帆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">细雨招摇过远帆</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-关于作者">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于作者</a>
+
+  </li>
+        <li class="menu-item menu-item-专栏">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>专栏</a>
+
+  </li>
+        <li class="menu-item menu-item-时间轴">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xmu-csnoob.github.io/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-1-Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenfei Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="细雨招摇过远帆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java-八股文-1-Java语言基础问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-28 00:00:00 / Modified: 20:07:20" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+08:00">2022-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="far fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#Java语言基础问题</p>
+<h2 id="1-解释下什么是面向对象？面向对象和面向过程的区别？"><a href="#1-解释下什么是面向对象？面向对象和面向过程的区别？" class="headerlink" title="1.解释下什么是面向对象？面向对象和面向过程的区别？"></a>1.解释下什么是面向对象？面向对象和面向过程的区别？</h2><p>面向过程是把完成功能的过程分成若干个步骤， 将这些步骤分散到不同的函数<br>也可以说是方法中去，接下来只要依次调用这些步骤代表的方法即可。<br>面向对象则是将整个需求按照特点、功能等将整个系统划分为若干个类(最常见的也就是模拟现实世界进行设计)，，<br>将系统分解为不同的对象以及这些对象的行为。</p>
+<h2 id="2-解释一下面向对象的三大特性"><a href="#2-解释一下面向对象的三大特性" class="headerlink" title="2.解释一下面向对象的三大特性"></a>2.解释一下面向对象的三大特性</h2><p><em>封装:</em><br>封装指的是把客观的事物进行抽象包装成类，并且把自己的属性和方法包装起来，根据具体情况<br>来决定是否对外隐藏或开放<br><em>继承:</em><br>继承指的是，继承某类的子类可以使用父类的所有功能，并且还可以在此基础上对父类的功能进行拓展<br><em>多态:</em><br>多态指的是，某些方法对于不同的类具体的实现可能不同，但是他们可以通过相同的方法进行调用  </p>
+<h2 id="3-JDK-JRE-JVM"><a href="#3-JDK-JRE-JVM" class="headerlink" title="3.JDK JRE JVM"></a>3.JDK JRE JVM</h2><p>JDK是Java的核心，包括了JRE，一些java工具以及java类库<br>JRE是java的运行环境，包含JVM标准实现以及java类库<br>JVM是java虚拟机，是运行Java进程的虚拟计算机</p>
+<h3 id="4-Java创建对象的方法"><a href="#4-Java创建对象的方法" class="headerlink" title="4.Java创建对象的方法"></a>4.Java创建对象的方法</h3><p>1.new关键字<br>2.反射：Class.newInstance<br>3.反射：Constructor.newInstance<br>4.实现cloneable接口调用clone<br>5.反序列化  </p>
+<h3 id="5-接口与抽象类的区别"><a href="#5-接口与抽象类的区别" class="headerlink" title="5.接口与抽象类的区别"></a>5.接口与抽象类的区别</h3><p>1.接口只允许定义方法，抽象类允许实现方法<br>2.实现接口用implements关键字，并且一个类允许实现多个接口。<br>继承抽象类用extends关键字，一个类只允许继承一个类  </p>
+<h3 id="6-HashCode相同，equal-的结果就是true吗？"><a href="#6-HashCode相同，equal-的结果就是true吗？" class="headerlink" title="6.HashCode相同，equal()的结果就是true吗？"></a>6.HashCode相同，equal()的结果就是true吗？</h3><p>两个对象equals相等，则它们的hashcode必须相等，反之则不一定。<br>两个对象&#x3D;&#x3D;相等，则其hashcode一定相等，反之不一定成立。</p>
+<h3 id="7-Java方法参数是传值还是传引用？"><a href="#7-Java方法参数是传值还是传引用？" class="headerlink" title="7.Java方法参数是传值还是传引用？"></a>7.Java方法参数是传值还是传引用？</h3><p>传值，基本类型传值的拷贝。引用类型传引用的地址的拷贝。</p>
+<h3 id="8-如何实现对象的克隆？"><a href="#8-如何实现对象的克隆？" class="headerlink" title="8.如何实现对象的克隆？"></a>8.如何实现对象的克隆？</h3><p>浅拷贝:当对象被复制时，只复制对象本身和其中包含的值类型的成员变量，而引用类型的成员对象并没有复制。<br>深拷贝:将原型对象的所有引用对象也复制一份给克隆对象。<br>1.浅拷贝：实现cloneable接口，调用clone方法<br>2.深拷贝：序列化反序列化的方式</p>
+<h3 id="9-泛型是如何工作的？"><a href="#9-泛型是如何工作的？" class="headerlink" title="9.泛型是如何工作的？"></a>9.泛型是如何工作的？</h3><p>Java在编译的时候会进行类型擦除，也就是说Java在编译的时候，代码中的泛型类型已经是确定的，泛型是被擦除掉的。</p>
+<h3 id="10-限定通配符与非限定通配符"><a href="#10-限定通配符与非限定通配符" class="headerlink" title="10.限定通配符与非限定通配符"></a>10.限定通配符与非限定通配符</h3><p>非限定通配符：<br>&lt;T&gt; 任意类型<br>限定通配符：<br>&lt;? T extends F&gt;必须是F本身或是继承F的子类<br>&lt;? T super F&gt;必须是F本身或是F的父类  </p>
+<h3 id="11-String-StringBuffer-StringBuilder"><a href="#11-String-StringBuffer-StringBuilder" class="headerlink" title="11.String,StringBuffer,StringBuilder"></a>11.String,StringBuffer,StringBuilder</h3><p>String是final的，线程不安全<br>StringBuffer是可变的，线程安全<br>StringBuilder是可变的，线程不安全。<br>字符串拼接速度：String&lt;StringBuffer&lt;StringBuilder<br>首先String是final的，因此如果要拼接就需要重新new一个String对象，重新赋值<br>其次StringBuffer为了线程安全进行了一些加锁的操作，牺牲了一定的效率  </p>
+<h3 id="12-StringBuilder为什么线程不安全？StringBuffer为什么线程安全？"><a href="#12-StringBuilder为什么线程不安全？StringBuffer为什么线程安全？" class="headerlink" title="12.StringBuilder为什么线程不安全？StringBuffer为什么线程安全？"></a>12.StringBuilder为什么线程不安全？StringBuffer为什么线程安全？</h3><p>StringBuilder的append方法没有考虑线程同步的问题，但是在StringBuffer中<br>用synchronize关键字进行了线程同步。</p>
+<h3 id="13-字节流（InputStream-OutputStream-、字符流-Reader-Writer"><a href="#13-字节流（InputStream-OutputStream-、字符流-Reader-Writer" class="headerlink" title="13.字节流（InputStream,OutputStream)、字符流(Reader,Writer)"></a>13.字节流（InputStream,OutputStream)、字符流(Reader,Writer)</h3><p>字节流中最小的数据单元是字节，字符流是字符</p>
+<h3 id="14-BIO、NIO、AIO"><a href="#14-BIO、NIO、AIO" class="headerlink" title="14.BIO、NIO、AIO"></a>14.BIO、NIO、AIO</h3><p>BIO:<br>BIO指阻塞IO，在从IO未获取到数据的情况下就会一直等待，等待会使当前线程阻塞<br>Non-Blocking IO:<br>NIO指非阻塞式IO,无论什么情况直接获取数据，获取失败则一直重试。<br>IO复用：<br>IO复用是指单个线程同时处理多个IO操作，通过一些操作轮询当前可以处理的IO操作<br>select:线性轮询符合条件的操作<br>epoll:记住当前条件下对应的IO操作进行调用</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/28/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-4-Java%20Exception/" rel="prev" title="Java-八股文-4-Java Exception">
+      <i class="fa fa-chevron-left"></i> Java-八股文-4-Java Exception
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/Java/Java-%E5%85%AB%E8%82%A1%E6%96%87-9-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="next" title="Java-八股文-9-消息队列">
+      Java-八股文-9-消息队列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A7%A3%E9%87%8A%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9F%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1.解释下什么是面向对象？面向对象和面向过程的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">2.解释一下面向对象的三大特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDK-JRE-JVM"><span class="nav-number">3.</span> <span class="nav-text">3.JDK JRE JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Java%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">4.Java创建对象的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.2.</span> <span class="nav-text">5.接口与抽象类的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-HashCode%E7%9B%B8%E5%90%8C%EF%BC%8Cequal-%E7%9A%84%E7%BB%93%E6%9E%9C%E5%B0%B1%E6%98%AFtrue%E5%90%97%EF%BC%9F"><span class="nav-number">3.3.</span> <span class="nav-text">6.HashCode相同，equal()的结果就是true吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Java%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E6%98%AF%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F"><span class="nav-number">3.4.</span> <span class="nav-text">7.Java方法参数是传值还是传引用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%8B%E9%9A%86%EF%BC%9F"><span class="nav-number">3.5.</span> <span class="nav-text">8.如何实现对象的克隆？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%B3%9B%E5%9E%8B%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F"><span class="nav-number">3.6.</span> <span class="nav-text">9.泛型是如何工作的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E9%99%90%E5%AE%9A%E9%80%9A%E9%85%8D%E7%AC%A6%E4%B8%8E%E9%9D%9E%E9%99%90%E5%AE%9A%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">3.7.</span> <span class="nav-text">10.限定通配符与非限定通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-String-StringBuffer-StringBuilder"><span class="nav-number">3.8.</span> <span class="nav-text">11.String,StringBuffer,StringBuilder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-StringBuilder%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%EF%BC%9FStringBuffer%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="nav-number">3.9.</span> <span class="nav-text">12.StringBuilder为什么线程不安全？StringBuffer为什么线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E5%AD%97%E8%8A%82%E6%B5%81%EF%BC%88InputStream-OutputStream-%E3%80%81%E5%AD%97%E7%AC%A6%E6%B5%81-Reader-Writer"><span class="nav-number">3.10.</span> <span class="nav-text">13.字节流（InputStream,OutputStream)、字符流(Reader,Writer)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-BIO%E3%80%81NIO%E3%80%81AIO"><span class="nav-number">3.11.</span> <span class="nav-text">14.BIO、NIO、AIO</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wenfei Wang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xmu-csnoob" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xmu-csnoob" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/395110618@qq.com" title="E-Mail → 395110618@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenfei Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
